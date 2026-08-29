@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI Coding Architecture"
+  short_description: "Apply a pragmatic architecture contract to coding work"
+  default_prompt: "Use $ai-coding-architecture to implement or review this change with maintainable boundaries."
