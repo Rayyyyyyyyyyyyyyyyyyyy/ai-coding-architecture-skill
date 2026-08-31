@@ -1,4 +1,4 @@
 interface:
   display_name: "Coding Architecture"
   short_description: "Keep frontend architecture maintainable and composable"
-  default_prompt: "Use $coding-architecture to implement or refactor this UI with clear, reusable boundaries."
+  default_prompt: "Use $coding-architecture to inspect this frontend and implement the smallest maintainable change using its existing conventions and primitives."
