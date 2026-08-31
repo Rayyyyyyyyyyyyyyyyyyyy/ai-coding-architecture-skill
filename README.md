@@ -2,23 +2,103 @@
 
 [![skills.sh](https://skills.sh/b/Rayyyyyyyyyyyyyyyyyyyy/ai-coding-architecture-skill)](https://skills.sh/Rayyyyyyyyyyyyyyyyyyyy/ai-coding-architecture-skill)
 
-A concise, decision-oriented agent skill for maintainable frontend architecture. It guides coding agents to preserve repository conventions, reuse existing UI systems, compose components, extract meaningful repetition, and introduce abstractions only when they solve a concrete problem.
+> 給正在接觸 Vibe Coding 的你：讓 AI 不只快速做出功能，也別把專案越改越亂。
 
-## Install
+## 先說，什麼是 Vibe Coding？
+
+你用日常語言告訴 AI 想做什麼，AI 幫你產生或修改程式；你看結果、提出調整，再繼續往下做。就算不熟悉程式，也能一步步做出網站或 App。這就是許多人正在嘗試的 Vibe Coding。
+
+它很快，也很有成就感。但專案做了一陣子後，你可能開始遇到這些情況：
+
+- 同一種按鈕或提示視窗，AI 每次都重新做一套；
+- 新功能可以用，舊功能卻突然壞掉；
+- 只是改一個小地方，AI 卻動了很多不相關的檔案；
+- 功能越來越多，之後每次修改都更容易出錯；
+- AI 說「完成了」，你卻不知道它是不是用了合理的做法。
+
+這不一定是你的提示寫得不好。AI 通常會專注完成眼前的要求，如果沒有特別提醒，它不一定會先了解整個專案原本怎麼運作。
+
+## 這個 skill 在做什麼？
+
+`coding-architecture` 是一份給 AI 程式助手的工作說明書。它不會要求你先學會程式架構，而是在 AI 動手改程式時，提醒它多做幾個重要判斷。
+
+你可以把專案想成一間正在慢慢裝修的房子。加入新功能以前，應該先看看倉庫裡有沒有合用的材料，以及原本的水電管線怎麼走，而不是每次都打掉重做。
+
+這個 skill 要 AI 遵循的核心順序是：
+
+**先沿用 → 再組合 → 整理真正重複的部分 → 有明確需要才建立新架構**
+
+換成白話文，就是：
+
+- 動手前先看懂專案目前的做法；
+- 已經有合適的按鈕、表單或提示視窗，就優先使用；
+- 只改完成這次需求真正需要的地方；
+- 長得像的東西不一定要硬湊成同一套，功能真的相同才共用；
+- 不因為「未來可能會用到」，就先加入一大堆複雜設計；
+- 完成後檢查測試和修改範圍，避免順手弄壞其他地方。
+
+## 一個 Vibe Coding 的例子
+
+假設你對 AI 說：
+
+> 幫我在刪除帳號前，加上一個「確定要刪除嗎？」的提示視窗。
+
+AI 可以直接做出一個新視窗，畫面看起來也能正常使用。但專案裡可能早就有另一個提示視窗。兩套版本放在一起，外觀、操作方式和之後的修改方式都可能不一樣。
+
+使用這個 skill 後，AI 會先找現有的提示視窗。能沿用就沿用，只加入這次需要的刪除行為。你得到的畫面比較一致，下一次修改也不必同時處理兩套版本。
+
+## 什麼時候適合使用？
+
+當你正在做這些事情時，可以使用它：
+
+- 新增網站或 App 的頁面與功能；
+- 製作按鈕、表單、選單、登入或提示視窗；
+- 專案已經做了一段時間，開始覺得越改越亂；
+- 要整理 AI 先前產生、現在很難修改的畫面程式；
+- 要把會員、商品或其他服務提供的資料放到畫面上；
+- 希望 AI 完成功能時，也顧及下一次修改是否容易。
+
+如果只是換一句文字、調整一個顏色，通常不需要特別使用。它主要處理使用者看得到、點得到的網站或 App 畫面，不是為只涉及伺服器或資料庫的工作設計。
+
+## 安裝
+
+在終端機執行：
 
 ```sh
 npx skills@latest add Rayyyyyyyyyyyyyyyyyyyy/ai-coding-architecture-skill
 ```
 
-Select `coding-architecture` and the agents where you want it installed.
+如果你不熟悉終端機，可以把上面這行指令交給負責設定開發工具的人。
 
-## Use
+安裝過程中選擇 `coding-architecture`，再選擇要使用它的 AI 程式助手。
 
-Invoke it explicitly as `$coding-architecture`, or let a compatible agent load it automatically for frontend implementation and refactoring tasks.
+## 使用
 
-## Evaluate
+安裝後，不用把整份規則貼進每一次對話。只要在需求中指定 `$coding-architecture`：
 
-Use the [behavioral evaluation cases](evaluations/behavioral-cases.md) to compare implementation decisions before and after substantial skill revisions. Score the resulting architecture and scope control rather than wording.
+```text
+請使用 $coding-architecture。
+先查看專案原本的做法，再幫我新增會員登入畫面。
+請只修改必要的部分，能沿用現有功能就沿用。
+```
+
+你也可以用它整理已經開始變亂的專案：
+
+```text
+請使用 $coding-architecture 整理這個畫面。
+保留目前功能，不要重做整個專案。
+完成後告訴我沿用了什麼、整理了什麼，以及為什麼這樣做。
+```
+
+支援自動載入 skill 的 AI 程式助手，也可能在適合的工作中自行使用它。
+
+## 它不能替你做什麼？
+
+這個 skill 是護欄，不是保證書。它能提醒 AI 採用比較容易維護的做法，但不能保證每次產生的程式都沒有錯，也不會替你決定產品應該做什麼。重要功能完成後，仍然需要實際操作和測試。
+
+## 如何確認它真的有幫助？
+
+[行為評估案例](evaluations/behavioral-cases.md)中列出五種常見情境，用來比較 AI 使用 skill 前後的實際做法。我們關心的是它有沒有做出更容易維護的結果，而不是回答裡有沒有出現漂亮的專業術語。
 
 ## License
 
