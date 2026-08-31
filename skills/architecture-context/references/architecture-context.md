@@ -1,6 +1,6 @@
 # Repository Architecture Context
 
-Read this reference when a task creates or changes a meaningful frontend boundary, when relevant architecture documentation already exists, or when durable architectural intent needs to be recorded for future agents.
+Read this reference when a task creates or changes a meaningful architectural boundary, when relevant architecture documentation already exists, or when durable architectural intent needs to be recorded for future agents.
 
 The outcome is a repository that explains both what the system does and the non-obvious intent that future contributors must preserve. Do not turn ordinary implementation work into a documentation project.
 

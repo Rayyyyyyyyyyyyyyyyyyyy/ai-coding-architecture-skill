@@ -1,6 +1,6 @@
 ---
 name: coding-architecture
-description: Guide maintainable frontend implementation and refactoring through semantic reuse, clear boundaries, and repository-resident architecture context. Use for non-trivial UI, state, design-system, or frontend data-boundary changes; do not use for backend-only architecture or cosmetic edits.
+description: Guide maintainable frontend implementation and refactoring through semantic reuse, composition, clear boundaries, and justified abstractions. Use for non-trivial UI, state, design-system, or frontend data-boundary changes; do not use for backend-only architecture or cosmetic edits.
 ---
 
 # Coding Architecture
@@ -13,16 +13,6 @@ Improve maintainability without turning a focused change into an architecture pr
 - Preserve the project's established framework, design system, directory conventions, state approach, and test strategy unless changing them is requested or concretely necessary.
 - Prefer the smallest cohesive change that satisfies the request and preserves behavior. Do not reorganize unrelated modules.
 - Treat the guidance below as decision criteria, not a requirement to introduce every listed pattern.
-
-## Recover architecture context
-
-- Before a non-trivial change, locate relevant `ARCHITECTURE.md` files or the repository's established equivalent. Read only the relevant hierarchy, from repository scope to the nearest feature or module.
-- Treat architecture documentation as intended design and code, types, schemas, and tests as implemented reality. Reconcile conflicts instead of blindly trusting either side; user and repository instructions remain authoritative.
-- Preserve documented responsibilities, state ownership, public APIs, dependency rules, external boundaries, and invariants unless the task concretely requires changing them.
-- When a material change alters that intent, update the nearest existing architecture document in the same change.
-- Create new architecture documentation only for durable, non-obvious intent that future agents could reasonably misunderstand and that has no established home. Do not document trivial folders or restate source code.
-
-For work that creates, changes, or documents an architectural boundary, read [references/architecture-context.md](references/architecture-context.md).
 
 ## Decide in this order
 
@@ -70,7 +60,6 @@ Check that the implementation:
 - avoids duplicated synchronized state and unintended vendor-type leakage;
 - covers important new business rules, parsers, adapters, or state transitions with tests proportional to their risk;
 - handles loading, empty, error, responsive, and accessibility behavior when the changed UI requires them;
-- keeps relevant architecture documentation synchronized without creating documentation noise;
 - passes the repository's relevant checks and leaves a final diff without accidental scope expansion.
 
-For a material architectural change, briefly report what was reused, what boundary or abstraction was introduced, and the concrete reason for it. State any intentional deviation from repository conventions.
+Keep routine pattern choices silent. For a material architectural change, briefly report what boundary or abstraction changed and its concrete reason. State any intentional deviation from repository conventions.
