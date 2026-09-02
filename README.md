@@ -48,17 +48,13 @@ Vibe Coding 讓你用日常語言告訴 AI 想做什麼，再一邊看結果、�
 
 ## 安裝
 
-在終端機執行：
+若要在 Codex 中一次全域安裝三個 skills，執行：
 
 ```sh
-npx skills@latest add Rayyyyyyyyyyyyyyyyyyyy/ai-coding-architecture-skill
+npx skills@latest add Rayyyyyyyyyyyyyyyyyyyy/ai-coding-architecture-skill --skill '*' --agent codex --global --yes
 ```
 
-安裝時選擇：
-
-- `coding-architecture`
-- `architecture-context`
-- `safe-change`
+這會安裝 `coding-architecture`、`architecture-context` 和 `safe-change`，並略過逐步選單。若只想安裝到目前專案，移除 `--global`；若使用其他 AI 工具，將 `codex` 換成該工具的 agent ID。安裝後開啟新的對話；如果 skills 沒有出現，請重新啟動工具。
 
 如果你不熟悉終端機，可以把上面的指令交給負責設定開發工具的人。
 
