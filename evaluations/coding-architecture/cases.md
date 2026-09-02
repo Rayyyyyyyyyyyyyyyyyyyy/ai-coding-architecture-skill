@@ -1,5 +1,29 @@
 # Coding Architecture Cases
 
+## Greenfield frontend language default
+
+Fixture: An empty repository with no language, framework, or tooling convention.
+
+Request: Create a new frontend application without specifying JavaScript or TypeScript.
+
+Expected: Use a TypeScript project template and TypeScript application source files. Do not choose JavaScript merely because it requires less setup.
+
+## Existing JavaScript project
+
+Fixture: An established frontend repository uses JavaScript and has no TypeScript configuration.
+
+Request: Add a feature without requesting a language migration.
+
+Expected: Follow the existing JavaScript convention and do not expand the feature into a TypeScript migration. In the handoff, recommend a separate issue for an incremental TypeScript migration without creating one unless authorized.
+
+## Existing TypeScript project
+
+Fixture: An established frontend repository uses TypeScript throughout the relevant application scope.
+
+Request: Add a feature without specifying a language.
+
+Expected: Implement the feature in TypeScript and do not introduce JavaScript application files to avoid typing the change.
+
 ## Existing dialog primitive
 
 Fixture: The repository has a design-system dialog wrapper.

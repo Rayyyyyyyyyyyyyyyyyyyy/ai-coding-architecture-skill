@@ -14,6 +14,14 @@ Improve maintainability without turning a focused change into an architecture pr
 - Prefer the smallest cohesive change that satisfies the request and preserves behavior. Do not reorganize unrelated modules.
 - Treat the guidance below as decision criteria, not a requirement to introduce every listed pattern.
 
+## Choose the language deliberately
+
+Determine the language used by the nearest relevant frontend scope from its configuration, project templates, source files, and repository instructions. In a mixed-language monorepo, follow the owning package or feature rather than an unrelated root convention.
+
+- For a new frontend project in the JavaScript ecosystem with no established language choice, use TypeScript and select TypeScript project templates. Use JavaScript only when the user explicitly requests it or the chosen framework or runtime requires it.
+- In an existing TypeScript scope, continue with TypeScript. Do not introduce JavaScript application files merely to avoid typing the change.
+- In an existing JavaScript scope, keep the requested change in JavaScript unless migration is requested; do not turn a focused task into an incidental TypeScript migration. In the final handoff, briefly recommend tracking an incremental TypeScript migration as a separate issue. Do not create the issue unless the user asks for it or has already authorized issue creation.
+
 ## Decide in this order
 
 Use this as a decision preference, not a mandatory pipeline:
@@ -55,6 +63,7 @@ Component size, prop count, visual similarity, and hypothetical future reuse are
 Check that the implementation:
 
 - stays within the requested scope and follows repository conventions;
+- follows the language-choice policy and, for an existing JavaScript scope, mentions TypeScript migration as a separate follow-up;
 - reuses existing primitives where their semantics fit and does not create a duplicate concept;
 - gives every new hook, service, adapter, context, store, or shared component a concrete responsibility;
 - avoids duplicated synchronized state and unintended vendor-type leakage;
