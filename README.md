@@ -56,23 +56,63 @@ npx skills@latest add Rayyyyyyyyyyyyyyyyyyyy/ai-coding-architecture-skill --skil
 
 ### 平常寫程式時
 
-| Skill | 它會提醒 AI 什麼 |
-| :--- | :--- |
-| [`coding-architecture`](skills/coding-architecture/) | 寫新功能前，先看看專案原本怎麼做。能沿用就沿用，能組合就組合，不要每次都另起爐灶。 |
-| [`architecture-context`](skills/architecture-context/) | 如果有些架構決定光看程式猜不出來，就把原因留在 repo 裡，免得下一個人又從頭猜一次。它不是專案百科，也不會記住每個檔案。 |
-| [`safe-change`](skills/safe-change/) | 動到套件、金鑰、登入權限、資料庫或環境設定時，先確認這個改動會不會留下安全問題，或造成難以復原的損失。 |
-| [`verify-before-done`](skills/verify-before-done/) | 說「完成」以前先拿證據。測到哪裡就說到哪裡，還沒驗證的部分不要假裝已經沒問題。 |
-| [`experience-completeness`](skills/experience-completeness/) | 畫面不只要在理想狀況下能用。載入中、沒資料、出錯、重複點擊、手機畫面和鍵盤操作，也要在真的需要時顧到。 |
-| [`debug-with-evidence`](skills/debug-with-evidence/) | 遇到 bug 或效能問題，先讓問題穩定地出現、留下看得見的證據，再判斷原因。除非你叫它修，否則它只負責查清楚。 |
+<table>
+  <thead>
+    <tr>
+      <th width="240" align="left">Skill</th>
+      <th align="left">它會提醒 AI 什麼</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td width="240"><a href="skills/coding-architecture/"><code>coding-architecture</code></a></td>
+      <td>寫新功能前，先看看專案原本怎麼做。能沿用就沿用，能組合就組合，不要每次都另起爐灶。</td>
+    </tr>
+    <tr>
+      <td width="240"><a href="skills/architecture-context/"><code>architecture-context</code></a></td>
+      <td>如果有些架構決定光看程式猜不出來，就把原因留在 repo 裡，免得下一個人又從頭猜一次。它不是專案百科，也不會記住每個檔案。</td>
+    </tr>
+    <tr>
+      <td width="240"><a href="skills/safe-change/"><code>safe-change</code></a></td>
+      <td>動到套件、金鑰、登入權限、資料庫或環境設定時，先確認這個改動會不會留下安全問題，或造成難以復原的損失。</td>
+    </tr>
+    <tr>
+      <td width="240"><a href="skills/verify-before-done/"><code>verify-before-done</code></a></td>
+      <td>說「完成」以前先拿證據。測到哪裡就說到哪裡，還沒驗證的部分不要假裝已經沒問題。</td>
+    </tr>
+    <tr>
+      <td width="240"><a href="skills/experience-completeness/"><code>experience-completeness</code></a></td>
+      <td>畫面不只要在理想狀況下能用。載入中、沒資料、出錯、重複點擊、手機畫面和鍵盤操作，也要在真的需要時顧到。</td>
+    </tr>
+    <tr>
+      <td width="240"><a href="skills/debug-with-evidence/"><code>debug-with-evidence</code></a></td>
+      <td>遇到 bug 或效能問題，先讓問題穩定地出現、留下看得見的證據，再判斷原因。除非你叫它修，否則它只負責查清楚。</td>
+    </tr>
+  </tbody>
+</table>
 
 這六個 skills 各管一件事。需要一起工作時會互相配合，不需要時也不會硬湊成一張超長檢查表。
 
 ### 特殊情況才用
 
-| Skill | 什麼時候叫它 |
-| :--- | :--- |
-| [`a2a-handoff`](skills/a2a-handoff/) | 真的要把工作交給另一個 Agent 時，才用它整理「做到哪裡、留下什麼、接下來要做什麼」。一般寫功能時不需要多跑這一套。 |
-| [`rescue-vibe-project`](skills/rescue-vibe-project/) | 專案還能跑，但每改一次就壞別的地方，甚至已經沒人敢再碰時，用它先救回一條可以驗證的核心流程。它不會一上來就全面重寫，也不會因為救活一頁就宣布整個專案都健康了。 |
+<table>
+  <thead>
+    <tr>
+      <th width="240" align="left">Skill</th>
+      <th align="left">什麼時候叫它</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td width="240"><a href="skills/a2a-handoff/"><code>a2a-handoff</code></a></td>
+      <td>真的要把工作交給另一個 Agent 時，才用它整理「做到哪裡、留下什麼、接下來要做什麼」。一般寫功能時不需要多跑這一套。</td>
+    </tr>
+    <tr>
+      <td width="240"><a href="skills/rescue-vibe-project/"><code>rescue-vibe-project</code></a></td>
+      <td>專案還能跑，但每改一次就壞別的地方，甚至已經沒人敢再碰時，用它先救回一條可以驗證的核心流程。它不會一上來就全面重寫，也不會因為救活一頁就宣布整個專案都健康了。</td>
+    </tr>
+  </tbody>
+</table>
 
 `rescue-vibe-project` 不會由 AI 自己決定啟用。你真的需要時，請直接說：
 
