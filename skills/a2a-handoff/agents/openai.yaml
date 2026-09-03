@@ -1,0 +1,4 @@
+interface:
+  display_name: "A2A Handoff"
+  short_description: "Transfer precise state at agent handoff events"
+  default_prompt: "Use $a2a-handoff to transfer this task with exact status, durable artifacts, and no unnecessary narrative."

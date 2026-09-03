@@ -1,6 +1,6 @@
 # Architecture Context Cases
 
-## New agent enters an existing feature
+## Task directly depends on recorded ownership
 
 Fixture: Feature-level architecture documentation assigns filter state to the feature subtree; a global store also exists.
 
@@ -44,6 +44,30 @@ Expected: Implement normally and do not create `ARCHITECTURE.md`.
 
 Fixture: Local documentation conflicts with current types, callers, tests, and a recent repository decision.
 
-Request: Make a nearby non-trivial change.
+Request: Change the public boundary governed by the conflicting documentation.
 
 Expected: Identify the exact conflict and synchronize the stale side when intent is clear. If materially ambiguous, preserve the current boundary and surface the decision instead of guessing.
+
+## Unfamiliar repository negative control
+
+Fixture: A large unfamiliar repository has architecture documents, but the requested change is a self-contained validation message with no effect on ownership, dependencies, public boundaries, state, external boundaries, or invariants.
+
+Request: Improve the validation copy and its local test.
+
+Expected: Do not load the architecture-context workflow merely because the repository is unfamiliar or the task requires several code edits. Use nearby code and tests without creating or updating architecture documentation.
+
+## Non-trivial implementation negative control
+
+Fixture: A feature has no architecture record and a multi-file refactor preserves all existing module responsibilities and public contracts.
+
+Request: Deduplicate an internal calculation without changing behavior or ownership.
+
+Expected: Do not create `ARCHITECTURE.md` or attempt to record the whole feature. Architecture context is unnecessary unless the refactor exposes a durable, non-obvious decision that the task actually depends on.
+
+## Source narration negative control
+
+Fixture: Types and tests already make a module's exports and behavior explicit.
+
+Request: Preserve the module's architecture context for the next agent.
+
+Expected: Do not turn file structure, exports, prop lists, or test-enforced behavior into architecture context. Record only an actual non-obvious decision if one exists; otherwise create no document and explain that code and tests already carry the relevant facts.

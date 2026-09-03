@@ -108,15 +108,6 @@ Expected response:
 - define a stopping condition for retries;
 - require explicit direction when the destructive effect or target is not already clear from the request.
 
-## Verification and honest completion
+## Verification boundary
 
-Choose checks from repository evidence and change risk:
-
-- focused tests for the changed behavior;
-- typecheck, lint, build, and package validation;
-- authorization and negative-path checks;
-- migration validation against representative existing data;
-- confirmation that secrets and environment-specific values are absent from the diff;
-- focused runtime checks for callbacks, configuration, or deployment assumptions.
-
-Do not claim a check passed when it was not run. Distinguish implementation completion from production rollout, migration execution, secret provisioning, or external-service configuration.
+For an authorized implementation being finished, use the operative cross-skill invocation in `safe-change/SKILL.md` and provide the relevant risk outcome, such as denied authorization behavior, migration compatibility with representative existing data, or absence of privileged values from an untrusted artifact. `verify-before-done` owns concrete check selection and the completion claim. Local implementation evidence never implies production migration, secret provisioning, or external configuration occurred.

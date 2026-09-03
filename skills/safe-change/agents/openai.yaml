@@ -1,4 +1,4 @@
 interface:
   display_name: "Safe Change"
-  short_description: "Protect code, secrets, auth, and persistent data"
-  default_prompt: "Use $safe-change to implement this change without introducing hidden security, data, dependency, or runtime risk."
+  short_description: "Guard high-risk application boundaries"
+  default_prompt: "Use $safe-change to implement, review, or diagnose this work within its authorization boundary and address only the relevant dependency, security, data, runtime, or recovery risks."

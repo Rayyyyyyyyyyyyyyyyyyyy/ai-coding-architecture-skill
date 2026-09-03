@@ -1,0 +1,4 @@
+interface:
+  display_name: "Experience Completeness"
+  short_description: "Complete only the user states a flow actually signals"
+  default_prompt: "Use $experience-completeness to map this flow's concrete signals to the relevant user-visible states and complete them without expanding into an unrelated audit."

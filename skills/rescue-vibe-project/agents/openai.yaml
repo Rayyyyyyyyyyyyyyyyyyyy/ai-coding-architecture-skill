@@ -1,0 +1,7 @@
+interface:
+  display_name: "Rescue Vibe Project"
+  short_description: "Restore one trusted slice of a brittle AI-built project"
+  default_prompt: "Use $rescue-vibe-project to establish the real baseline and restore one verified, high-value vertical slice without claiming the whole repository is healthy."
+
+policy:
+  allow_implicit_invocation: false

@@ -1,41 +1,28 @@
 ---
 name: architecture-context
-description: Preserve repository-resident architectural intent across agents, models, sessions, and human collaborators. Use when entering a non-trivial existing scope, changing ownership, dependencies, public APIs, state, external boundaries, or architecture documentation; do not use for trivial edits or source-code narration.
+description: Recover or preserve non-obvious architectural intent when a task creates, changes, disputes, or depends on a durable ownership, dependency, public, state, or external boundary. Not for repository familiarization.
 ---
 
 # Architecture Context
 
-Make the repository a durable handoff artifact so a future agent can recover why important boundaries exist without relying on conversation history or model memory.
+Keep durable architectural intent recoverable from the repository.
 
-## Recover context
+Load each named skill through the host mechanism; call the Skill tool when exposed. Do not reload an active skill.
 
-- Follow the user's request and repository instructions before this skill's guidance.
-- Locate the repository's established architecture-documentation convention. Use `ARCHITECTURE.md` only when no equivalent convention exists.
-- Before non-trivial work, read the relevant hierarchy from repository scope to the nearest feature or module, then inspect code, types, schemas, tests, and callers.
-- Treat documentation as intended design and implementation as current reality. When they conflict, determine which side is stale from repository evidence instead of blindly trusting either one.
-- Preserve documented responsibilities, state ownership, public boundaries, dependency rules, external boundaries, and invariants unless the task concretely requires changing them.
+## Recover
 
-Recover this context silently. Surface a conflict only when resolving it requires a material product decision, destructive migration, or scope expansion.
+- Follow user and repository instructions.
+- Use the established architecture-documentation convention; create `ARCHITECTURE.md` only when none exists.
+- Read only the hierarchy governing the active boundary, then corroborate it with code, types, schemas, tests, and callers.
+- Treat documentation as intended design and implementation as current reality. Resolve conflicts from repository evidence; surface only product decisions, destructive migrations, or scope expansion.
 
-## Preserve intent
+## Preserve
 
-- When a material change alters architectural intent, update the nearest existing architecture document in the same change.
-- Create a new architecture document only for durable, non-obvious knowledge that future agents could reasonably misunderstand and that has no established home.
-- Keep documentation at meaningful architectural scopes, not per directory or per file.
-- Record responsibilities, allowed dependencies, ownership, public boundaries, invariants, external boundaries, non-goals, or intentionally rejected alternatives only when they change future decisions.
-- Do not restate types, exports, prop lists, filenames, or behavior already obvious from code and tests.
-- Write architecture context in plain, model-neutral Markdown. Do not depend on a specific agent, tool name, or conversation.
+- Preserve documented ownership, dependency direction, public APIs, canonical state, external boundaries, and invariants unless the task changes them.
+- When durable intent changes, update the nearest existing record in the same change.
+- Create a record only when the intent is durable, non-obvious, consequential, and has no established home.
+- Record decisions and invariants, not exports, props, filenames, or behavior already enforced by code and tests.
 
-For conflict resolution, document-creation criteria, and content guidance, read [references/architecture-context.md](references/architecture-context.md).
+Read [references/architecture-context.md](references/architecture-context.md) only for conflict resolution or document-creation criteria.
 
-## Before finishing
-
-Check that:
-
-- relevant architectural intent was discovered before implementation;
-- the change preserves documented boundaries or updates them intentionally;
-- architecture-changing code and its nearest documentation agree;
-- no architecture document was created for a trivial or self-evident change;
-- a different agent could recover the important decision from the repository alone.
-
-Keep routine context recovery out of the user-facing handoff. Mention architecture documentation only when it was materially changed or when an unresolved conflict needs a decision.
+Mention architecture context only when it changed or remains conflicted. On an actual agent transfer, invoke `a2a-handoff` and reference the durable record.

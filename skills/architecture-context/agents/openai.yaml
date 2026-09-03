@@ -1,4 +1,4 @@
 interface:
   display_name: "Architecture Context"
-  short_description: "Preserve architecture decisions across agents"
-  default_prompt: "Use $architecture-context to recover and preserve this repository's architectural intent."
+  short_description: "Preserve non-obvious architecture decisions"
+  default_prompt: "Use $architecture-context to recover or preserve the non-obvious architectural intent this task directly depends on."

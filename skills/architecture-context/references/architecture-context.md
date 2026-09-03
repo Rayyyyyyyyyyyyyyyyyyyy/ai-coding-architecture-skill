@@ -1,8 +1,8 @@
 # Repository Architecture Context
 
-Read this reference when a task creates or changes a meaningful architectural boundary, when relevant architecture documentation already exists, or when durable architectural intent needs to be recorded for future agents.
+Read this reference when a task creates or changes a meaningful architectural boundary, disputes an existing architecture record, directly depends on a recorded decision, or needs durable non-obvious intent recorded for future agents. The mere presence of architecture documentation is not a trigger.
 
-The outcome is a repository that explains both what the system does and the non-obvious intent that future contributors must preserve. Do not turn ordinary implementation work into a documentation project.
+The outcome is a repository that preserves the non-obvious intent future contributors must retain. This is not complete project memory: code, types, schemas, tests, and operational documentation remain responsible for facts they already express well. Do not turn ordinary implementation work into a documentation project.
 
 ## Locate the established source of truth
 
@@ -15,7 +15,7 @@ Before creating a document, search for the repository's existing convention. It 
 
 Use `ARCHITECTURE.md` as the default only when no equivalent convention exists. Do not introduce a second competing convention.
 
-Read relevant context from general to local:
+When the task directly depends on architectural intent, read relevant context from general to local:
 
 ```text
 user and repository instructions
@@ -126,7 +126,7 @@ Update the nearest relevant document when a material change alters:
 
 Do not update architecture documentation for renames or implementation details that leave architectural intent unchanged. Remove or revise claims that no longer describe the system.
 
-Before finishing, ask:
+Use this decision gate:
 
 ```text
 Did this change alter durable intent that a future agent cannot reliably infer
@@ -136,4 +136,4 @@ Yes → update the nearest established architecture document.
 No  → do not create documentation noise.
 ```
 
-For a material architecture change, mention the synchronized document in the handoff. Do not narrate the entire context-recovery workflow unless the user needs it.
+For a material architecture change, mention the synchronized document in the final response. Do not narrate the entire context-recovery workflow unless the user needs it.

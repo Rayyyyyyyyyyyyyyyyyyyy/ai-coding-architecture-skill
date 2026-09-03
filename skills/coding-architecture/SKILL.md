@@ -1,74 +1,46 @@
 ---
 name: coding-architecture
-description: Guide maintainable frontend implementation and refactoring through semantic reuse, composition, clear boundaries, and justified abstractions. Use for non-trivial UI, state, design-system, or frontend data-boundary changes; do not use for backend-only architecture or cosmetic edits.
+description: Structure non-trivial frontend changes through semantic reuse, composition, clear ownership, and justified abstraction. Not for backend-only work or cosmetic edits.
 ---
 
 # Coding Architecture
 
-Improve maintainability without turning a focused change into an architecture project.
+Make the smallest cohesive frontend change that fits the existing system.
 
-## Scope and precedence
+Load each named skill through the host mechanism; call the Skill tool when exposed. Do not reload an active skill.
 
-- Follow the user's request and repository instructions before this skill's preferences.
-- Preserve the project's established framework, design system, directory conventions, state approach, and test strategy unless changing them is requested or concretely necessary.
-- Prefer the smallest cohesive change that satisfies the request and preserves behavior. Do not reorganize unrelated modules.
-- Treat the guidance below as decision criteria, not a requirement to introduce every listed pattern.
+## Scope
 
-## Choose the language deliberately
+- Follow user and repository instructions.
+- Preserve the framework, design system, directory conventions, state model, and test strategy unless the task requires change.
+- Own frontend language selection, component/state boundaries, semantic reuse, frontend data normalization, and abstraction decisions.
+- Do not reorganize unrelated modules or absorb security, UX completeness, verification, or handoff ownership.
 
-Determine the language used by the nearest relevant frontend scope from its configuration, project templates, source files, and repository instructions. In a mixed-language monorepo, follow the owning package or feature rather than an unrelated root convention.
+## Language
 
-- For a new frontend project in the JavaScript ecosystem with no established language choice, use TypeScript and select TypeScript project templates. Use JavaScript only when the user explicitly requests it or the chosen framework or runtime requires it.
-- In an existing TypeScript scope, continue with TypeScript. Do not introduce JavaScript application files merely to avoid typing the change.
-- In an existing JavaScript scope, keep the requested change in JavaScript unless migration is requested; do not turn a focused task into an incidental TypeScript migration. In the final handoff, briefly recommend tracking an incremental TypeScript migration as a separate issue. Do not create the issue unless the user asks for it or has already authorized issue creation.
+- Greenfield JavaScript ecosystem with no convention: TypeScript unless the user or runtime requires JavaScript.
+- Existing TypeScript scope: stay in TypeScript.
+- Existing JavaScript scope: stay in JavaScript unless migration is requested; do not propose an incidental migration.
 
-## Decide in this order
-
-Use this as a decision preference, not a mandatory pipeline:
+## Decision order
 
 **Reuse → Compose → Extract → Abstract**
 
-1. Inspect the relevant code and identify the current conventions, primitives, dependencies, data shapes, state ownership, and tests.
-2. Search for semantically equivalent components, hooks, utilities, types, schemas, services, and adapters.
-3. Reuse or extend an existing implementation when its contract fits. Do not merge concepts merely because they look similar.
-4. Compose existing parts when their responsibilities remain clear and consumers need flexible arrangement.
-5. Extract behavior or knowledge when it meaningfully repeats, changes for the same reasons, obscures a component's responsibility, or benefits from an independent test boundary.
-6. Introduce an abstraction only to solve a concrete problem such as dependency isolation, multiple real implementations, complex business rules, replacement, or testability.
+1. Inspect conventions, primitives, data shapes, state ownership, dependencies, callers, and tests.
+2. Reuse an equivalent contract; visual similarity alone is insufficient.
+3. Compose when consumers need arrangement without merged responsibilities.
+4. Extract behavior that repeats semantically, changes for the same reason, obscures ownership, or needs an independent test boundary.
+5. Abstract only for a concrete boundary: multiple real implementations, vendor isolation, business rules, replacement, or testability.
 
-Component size, prop count, visual similarity, and hypothetical future reuse are signals to investigate, not sufficient reasons to extract or abstract.
+Line count, prop count, and hypothetical reuse are investigation signals, not extraction criteria.
 
-## Apply patterns when the signal is present
+## Boundary rules
 
-| Signal | Preferred response |
-| --- | --- |
-| An equivalent framework or design-system primitive exists | Reuse, wrap, or extend it instead of rebuilding it. |
-| Related UI parts need independent arrangement or extension | Use composition; consider compound components only when consumers benefit from controlling the parts. |
-| Stateful behavior meaningfully repeats or makes rendering hard to understand | Extract a focused hook or composable. |
-| An external or untrusted data shape would spread beyond its entry boundary | Validate and normalize it into a canonical application model through a parser or adapter. |
-| A business rule is meaningful independently of the UI | Move it to an explicitly named domain function or service with a testable API. |
-| State belongs to one component or subtree | Keep it local and derive values when possible. Normal prop passing is acceptable; introduce context or a store only for genuine coordination. |
-| Code is only superficially similar or reuse is speculative | Keep it separate until a shared semantic contract emerges. |
+- Keep one state owner; derive values instead of synchronizing copies. Use context/store only for real cross-tree coordination.
+- Keep business rules outside dense rendering conditionals when independently meaningful.
+- Normalize untrusted or vendor data at its entry boundary into a canonical application model.
+- Keep feature code local until semantic reuse is demonstrated; expose shared code through a small named API.
+- Prefer existing framework/design-system/platform capability. On a real dependency-risk signal, invoke `safe-change`.
+- Prefer domain names over `utils`, `helpers`, `common`, or universal configurable components.
 
-## Preserve boundaries
-
-- Keep components cohesive rather than optimizing for a line-count limit. Simple view logic may stay near rendering; meaningful business rules should not be buried in dense UI conditionals.
-- Keep one source of truth for state. Prefer derived values over synchronized copies, and use effects primarily to synchronize with external systems.
-- Keep raw vendor responses and external implementation details behind their entry boundary when they would otherwise leak through the application.
-- Keep feature-specific code with its owning feature until reuse is demonstrated. Put shared code behind a small, semantic public API.
-- Prefer explicit domain names over generic `utils`, `helpers`, `common`, or prematurely universal components.
-- Before adding a dependency, verify that the framework, UI library, standard library, or an existing dependency does not already solve the problem.
-
-## Before finishing
-
-Check that the implementation:
-
-- stays within the requested scope and follows repository conventions;
-- follows the language-choice policy and, for an existing JavaScript scope, mentions TypeScript migration as a separate follow-up;
-- reuses existing primitives where their semantics fit and does not create a duplicate concept;
-- gives every new hook, service, adapter, context, store, or shared component a concrete responsibility;
-- avoids duplicated synchronized state and unintended vendor-type leakage;
-- covers important new business rules, parsers, adapters, or state transitions with tests proportional to their risk;
-- handles loading, empty, error, responsive, and accessibility behavior when the changed UI requires them;
-- passes the repository's relevant checks and leaves a final diff without accidental scope expansion.
-
-Keep routine pattern choices silent. For a material architectural change, briefly report what boundary or abstraction changed and its concrete reason. State any intentional deviation from repository conventions.
+Report only a material boundary, abstraction, or intentional convention deviation. On completion invoke `verify-before-done`; on actual agent transfer invoke `a2a-handoff`.

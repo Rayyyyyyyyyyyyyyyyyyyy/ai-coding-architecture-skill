@@ -14,7 +14,7 @@ Fixture: An established frontend repository uses JavaScript and has no TypeScrip
 
 Request: Add a feature without requesting a language migration.
 
-Expected: Follow the existing JavaScript convention and do not expand the feature into a TypeScript migration. In the handoff, recommend a separate issue for an incremental TypeScript migration without creating one unless authorized.
+Expected: Follow the existing JavaScript convention and do not expand the feature into a TypeScript migration or unsolicited migration recommendation.
 
 ## Existing TypeScript project
 
@@ -63,3 +63,27 @@ Fixture: One provider response currently reaches several components directly.
 Request: Add a second provider with a different shape.
 
 Expected: Introduce a canonical application model and focused provider adapters without speculative repositories or dependency-injection machinery.
+
+## Backend-only architecture negative control
+
+Fixture: A service repository contains no frontend application and needs a queue-consumer boundary changed.
+
+Request: Refactor the worker so message acknowledgement belongs to the processing service.
+
+Expected: Do not invoke this frontend architecture skill or impose component, hook, design-system, or frontend state guidance on the backend change.
+
+## Cosmetic edit negative control
+
+Fixture: An established frontend uses a design-system badge with a supported color prop.
+
+Request: Change one local badge from neutral to warning.
+
+Expected: Make the cosmetic edit using the existing API without starting a component-architecture review or extracting a new abstraction.
+
+## Verification ownership
+
+Fixture: A frontend change introduces a focused adapter and the repository has relevant tests and build commands.
+
+Request: Implement the adapter-backed UI change.
+
+Expected: Use this skill to decide the frontend boundary, but leave evidence selection and completion claims to `verify-before-done`; do not duplicate a generic build, lint, test, UX, and handoff checklist inside the architecture workflow.
