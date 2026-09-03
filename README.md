@@ -1,142 +1,148 @@
+<div align="center">
+
 # Vibe Coding Engineering Guardrails
 
-[![skills.sh](https://skills.sh/b/Rayyyyyyyyyyyyyyyyyyyy/ai-coding-architecture-skill)](https://skills.sh/Rayyyyyyyyyyyyyyyyyyyy/ai-coding-architecture-skill)
+**你負責想產品，這套 skills 幫 AI 別把專案越寫越難改。**
 
-> 你負責做產品，這套 skills 負責補上 AI coding 容易漏掉的工程護欄。
+[![Install with skills.sh](https://skills.sh/b/Rayyyyyyyyyyyyyyyyyyyy/ai-coding-architecture-skill)](https://skills.sh/Rayyyyyyyyyyyyyyyyyyyy/ai-coding-architecture-skill)
 
-## 這套 skills 解決什麼問題？
+[直接安裝](#直接安裝) · [看看有哪些-skills](#這-8-個-skills-各自管什麼) · [怎麼使用](#基本上不用特別做什麼)
 
-Vibe Coding 讓你用日常語言告訴 AI 想做什麼，再一邊看結果、一邊調整。即使不熟悉程式，也能很快做出網站或 App。
+</div>
 
-但專案做久了，你可能開始遇到：
+---
 
-- 同一種按鈕或提示視窗，AI 每次都重新做一套；
-- 換一個 AI 或開新對話，就要重新解釋專案怎麼運作；
-- 登入畫面看似完成，真正的權限檢查卻漏了；
-- 私密金鑰被放進使用者可以下載的網頁程式；
-- 改一個小功能，AI 卻順手重寫大片程式；
-- AI 說完成了，但重要測試或外部設定其實還沒做。
+用 AI 做產品很快。你說一句「幫我加個登入」，沒多久畫面就出來了。
 
-這套 collection 把不同問題交給不同 skill。你不需要先學會工程術語，也不必在每次需求中貼上一長串規則。
+麻煩通常不是第一版做不出來，而是改到第十次之後，專案開始出現一些很難解釋的小毛病：
 
-目前共八個 skills：六個日常工程護欄、一個只在 Agent 委派或交接事件使用的跨領域 contract，以及一個由使用者主動呼叫的救援流程。
+- 明明有現成的按鈕，AI 又做了一個幾乎一樣的
+- 換個 AI 或開新對話，就得重新解釋整個專案
+- 登入畫面做好了，真正的權限檢查卻沒做
+- 私密金鑰不小心被包進前端，任何人都能看到
+- 只想改一個小地方，結果半個專案一起被翻修
+- AI 說「完成了」，但重要的測試根本沒跑
 
-## 目前包含六個日常工程護欄
+這個 repo 收了 8 個 skills，專門替 AI 補上這些容易被忽略的工程習慣。
 
-| Skill | 它在背後處理的事 |
-| --- | --- |
-| `coding-architecture` | 讓新功能沿著專案原本的做法健康長進去，優先沿用、組合，再決定是否需要抽出共用做法。 |
-| `architecture-context` | 把不容易從程式本身看懂的重要架構決定留在 repository 裡；它不是完整專案記憶或檔案百科。 |
-| `safe-change` | 留意套件、私密資料、登入權限、資料庫、環境設定和破壞性修改等隱藏風險。 |
-| `verify-before-done` | 根據修改的風險實際執行有意義的檢查，並讓 AI 只宣稱已被證據支持的完成程度。 |
-| `experience-completeness` | 讓互動流程在真正相關的載入、空白、錯誤、重複操作、不同裝置與鍵盤操作情境下仍可完成。 |
-| `debug-with-evidence` | 發生 bug、偶發錯誤或效能退化時，先建立可觀測的失敗證據再找原因；只有你要求修復時才修改程式。 |
+它們不是要把每個需求變成一場架構會議，也不是要 AI 回答得更像教科書。它們只希望 AI 在動手之前多看一眼、做完之後多確認一步，讓今天省下來的時間，不會變成下個月要還的技術債。
 
-它們各自保持小而專注，可以單獨使用，也可以一起工作。
+> 其中 6 個會在平常寫程式時派上用場；1 個只管 Agent 之間的交接；最後 1 個是專案已經亂掉時才會主動叫來的救援隊。
 
-## Agent 交接時使用的跨領域 contract
+## 直接安裝
 
-| Skill | 它在什麼事件中工作 |
-| --- | --- |
-| `a2a-handoff` | 只有在工作實際委派、轉交、續接或回傳給另一個 Agent 時，才用精確任務狀態與最小必要成果交接；它不是一般實作工作的額外 checklist。 |
-
-有 native A2A runtime 時，這個 skill 遵守 host 支援的 A2A object 與 task-state schema。沒有 native runtime 時，使用 A2A-inspired 的精簡文字慣例；這個 fallback 不宣稱是可互通的 A2A protocol payload。
-
-## 需要時主動使用的救援流程
-
-| Skill | 適合什麼時候使用 |
-| --- | --- |
-| `rescue-vibe-project` | 專案已經能局部運作，但越改越容易壞、缺乏可信 baseline，或你已經不敢繼續修改時，先恢復一條可驗證的核心流程，不預設全面重寫，也不把一條流程通過說成整個 repository 已恢復健康。 |
-
-`rescue-vibe-project` 的 `SKILL.md` 已宣告 `disable-model-invocation: true`，OpenAI/Codex 安裝 metadata 也另外設定 `allow_implicit_invocation: false`。支援其中相應欄位的 hosts 會機械限制隱式呼叫；不支援的環境仍必須遵守只由使用者明確呼叫的行為邊界：
-
-```text
-請使用 $rescue-vibe-project，先把這個專案恢復到能安全繼續修改的狀態。
-```
-
-## 使用時不必改變你的習慣
-
-你仍然可以只對 AI 說：
-
-```text
-幫我加上 Google 登入。
-```
-
-支援 skill discovery 的 AI 程式助手，可以在需求符合各 skill 的 trigger 時分別處理：
-
-1. 讀取專案原本的登入與架構規則；
-2. 確認金鑰、登入和權限檢查放在安全的位置；
-3. 沿用現有畫面和程式組織方式；
-4. 執行目前能做的檢查，說清楚哪些外部設定仍待完成。
-
-正常、可逆的工程判斷會安靜完成。只有可能造成資料遺失、洩漏私密資訊、破壞相容性、增加基礎設施成本，或需要你決定產品行為時，AI 才應該停下來說明影響。
-
-`a2a-handoff` 只在真正發生 Agent 委派或交接事件時加入；`rescue-vibe-project` 則仍由你主動呼叫。自動 discovery 與 user-only metadata 的實際支援程度依 AI host 而異。
-
-## 同時安裝到 Claude Code 與 Codex
-
-若要把整套 collection 同時全域安裝到兩邊，執行：
+下面這行會把全部 skills 安裝到 Claude Code 和 Codex：
 
 ```sh
 npx skills@latest add Rayyyyyyyyyyyyyyyyyyyy/ai-coding-architecture-skill --skill '*' --global --agent claude-code --agent codex
 ```
 
-這會把相同的八個 skills 安裝到 Claude Code 與 Codex；不需要選邊，也不維護兩套行為。若只想安裝到目前專案，移除 `--global`。安裝後開啟新的對話；如果 skills 沒有出現，請重新啟動工具。
+裝好後開一個新對話就能使用。如果沒看到 skills，重新啟動工具一次。
 
-如果你不熟悉終端機，可以把上面的指令交給負責設定開發工具的人。
+<details>
+<summary>只想裝在目前這個專案裡</summary>
 
-## 也可以明確指定 skill
+把 `--global` 拿掉：
 
-日常工程護欄通常可以讓相容的 AI 依 trigger 選擇；交接與救援則遵守上面的事件或明確呼叫邊界。需要時，也可以直接寫：
-
-```text
-請使用 $coding-architecture，依照專案原本的做法完成這個頁面。
+```sh
+npx skills@latest add Rayyyyyyyyyyyyyyyyyyyy/ai-coding-architecture-skill --skill '*' --agent claude-code --agent codex
 ```
 
-```text
-請使用 $architecture-context，確認這次修改沒有破壞原本的架構決定。
-```
+</details>
+
+不熟終端機也沒關係，把上面的指令丟給幫你設定開發環境的人就好。
+
+## 這 8 個 skills 各自管什麼
+
+### 平常寫程式時
+
+| Skill | 它會提醒 AI 什麼 |
+| :--- | :--- |
+| [`coding-architecture`](skills/coding-architecture/) | 寫新功能前，先看看專案原本怎麼做。能沿用就沿用，能組合就組合，不要每次都另起爐灶。 |
+| [`architecture-context`](skills/architecture-context/) | 如果有些架構決定光看程式猜不出來，就把原因留在 repo 裡，免得下一個人又從頭猜一次。它不是專案百科，也不會記住每個檔案。 |
+| [`safe-change`](skills/safe-change/) | 動到套件、金鑰、登入權限、資料庫或環境設定時，先確認這個改動會不會留下安全問題，或造成難以復原的損失。 |
+| [`verify-before-done`](skills/verify-before-done/) | 說「完成」以前先拿證據。測到哪裡就說到哪裡，還沒驗證的部分不要假裝已經沒問題。 |
+| [`experience-completeness`](skills/experience-completeness/) | 畫面不只要在理想狀況下能用。載入中、沒資料、出錯、重複點擊、手機畫面和鍵盤操作，也要在真的需要時顧到。 |
+| [`debug-with-evidence`](skills/debug-with-evidence/) | 遇到 bug 或效能問題，先讓問題穩定地出現、留下看得見的證據，再判斷原因。除非你叫它修，否則它只負責查清楚。 |
+
+這六個 skills 各管一件事。需要一起工作時會互相配合，不需要時也不會硬湊成一張超長檢查表。
+
+### 特殊情況才用
+
+| Skill | 什麼時候叫它 |
+| :--- | :--- |
+| [`a2a-handoff`](skills/a2a-handoff/) | 真的要把工作交給另一個 Agent 時，才用它整理「做到哪裡、留下什麼、接下來要做什麼」。一般寫功能時不需要多跑這一套。 |
+| [`rescue-vibe-project`](skills/rescue-vibe-project/) | 專案還能跑，但每改一次就壞別的地方，甚至已經沒人敢再碰時，用它先救回一條可以驗證的核心流程。它不會一上來就全面重寫，也不會因為救活一頁就宣布整個專案都健康了。 |
+
+`rescue-vibe-project` 不會由 AI 自己決定啟用。你真的需要時，請直接說：
 
 ```text
-請使用 $safe-change，檢查這次登入與資料庫修改的隱藏風險。
+請使用 $rescue-vibe-project，先把這個專案恢復到能安全繼續修改的狀態。
 ```
+
+<details>
+<summary>a2a-handoff 的相容方式</summary>
+
+如果執行環境原生支援 A2A，這個 skill 會使用該環境提供的 A2A object 和 task-state schema。沒有原生支援時，就改用一份精簡、容易讀的文字交接。
+
+後者只是借用 A2A 的交接概念，不是假裝自己是能與其他系統互通的標準 A2A payload。
+
+</details>
+
+## 基本上，不用特別做什麼
+
+你還是照平常的方式跟 AI 說話：
 
 ```text
-請使用 $verify-before-done，實際確認這次修改可以使用，再告訴我哪些部分已被驗證。
+幫我加上 Google 登入。
 ```
+
+如果你使用的工具支援 skill discovery，AI 會依照這個需求，自己注意幾件事：
+
+1. 專案原本怎麼處理登入和權限
+2. 金鑰有沒有放在不該出現的地方
+3. 新畫面能不能沿用現成的元件和結構
+4. 做完後可以跑哪些檢查，還有哪些外部設定要由人完成
+
+一般、可復原的工程判斷，它應該安靜地處理掉。真的可能刪掉資料、洩漏秘密、破壞相容性、增加基礎設施成本，或需要你決定產品行為時，它才應該停下來找你確認。
+
+不同 AI 工具對自動載入 skills、限制使用者專用流程，以及 Agent 交接格式的支援程度不太一樣，實際行為仍以你使用的工具為準。
+
+### 想點名也可以
+
+如果這次特別在意某個面向，可以直接講：
 
 ```text
-請使用 $a2a-handoff，把目前任務精準交給下一個 Agent。
+請使用 $coding-architecture，照專案原本的做法完成這個頁面。
+
+請使用 $architecture-context，確認這次修改沒有弄壞原本的架構決定。
+
+請使用 $safe-change，檢查這次登入和資料庫修改有沒有隱藏風險。
+
+請使用 $verify-before-done，實際確認這次修改能不能用，再告訴我哪些部分真的驗證過了。
+
+請使用 $a2a-handoff，把目前任務完整交給下一個 Agent。
 ```
 
-## 安靜，但不是省略責任
+## 這套東西刻意不做什麼
 
-這些 skills 不會要求 AI 每次向你背誦設計模式或安全名詞。重點是讓它做出比較健康的工程決定，而不是讓回答看起來很專業。
+- **不逼 AI 背術語給你聽。** 工程判斷有做到，比回答看起來很專業重要。
+- **不把每次修改都當成大工程。** 小改動就用小改動該有的力氣處理。
+- **不把一句「測試通過」當萬靈丹。** 改動風險不同，需要的證據也不同。
+- **不亂保證。** 程式碼寫完，不代表正式環境、資料移轉、金鑰或外部服務都已經設定完成。
+- **不宣稱能讓專案永遠不出錯。** 它能做的是讓錯誤少一點、出事時比較容易查，也比較容易救回來。
 
-它們也不是保證書。重要功能仍然需要實際操作與測試；涉及正式環境、資料移轉、金鑰設定或外部服務時，完成程式碼不代表部署已經完成。
+## Claude Code 和 Codex 都能用
 
-## 跨 AI 使用
+每個 skill 的核心規則只寫在一份標準的 `SKILL.md` 裡，不需要為不同 AI 維護兩套內容。
 
-每個 skill 的核心行為只維護在標準 `SKILL.md` 中。Claude Code 使用其支援的 frontmatter；Codex 使用 `agents/openai.yaml` 補充 UI 與 invocation policy。兩邊共用相同行為，但 discovery、user-only enforcement 與 native A2A capability 仍由各 host 負責。
+| 工具 | 怎麼接上 |
+| :--- | :--- |
+| Claude Code | 讀取它支援的 `SKILL.md` frontmatter |
+| Codex | 另外透過 `agents/openai.yaml` 補上介面資訊和呼叫規則 |
 
-## 評估與設計原則
-
-- [Behavioral evaluation case specifications](evaluations/README.md)：定義要測哪些工程決定與執行紀錄；目前不是已通過的評估結果。
-- [Collection philosophy](docs/philosophy.md)：說明為什麼 skills 要保持安靜、專注、可組合且不綁定模型。
-- [Skill routing and ownership](docs/skill-routing.md)：區分六個工程護欄、delegation-event handoff 與主動 rescue workflow 的觸發及責任邊界。
-- [Host-neutral skill composition](docs/skill-composition.md)：說明跨 host 如何依具體 signal 載入另一支 skill，避免在同一 active context 重複載入，也不假設 Skill 會跨 turn 或 Agent 永久存在。
-
-### 驗證 invocation policy
-
-目前驗證採分層方式：七個可由模型選擇的 skills 必須通過 Codex
-`quick_validate.py`；八個 `SKILL.md` 都必須能解析 YAML frontmatter。救援
-skill 在目前 Codex validator 中唯一允許的已知失敗是
-`Unexpected key(s) in SKILL.md frontmatter: disable-model-invocation`，因為該
-validator 尚未接受這個跨 host 的 explicit-only extension key。這不是忽略
-policy：另外必須靜態確認 `disable-model-invocation: true` 與 OpenAI/Codex
-sidecar 的 `allow_implicit_invocation: false` 同時存在。其他 validator 錯誤
-仍視為失敗。
+兩邊讀到的是同一套行為。不過哪些 skills 會自動出現、哪些只能由使用者呼叫，以及 Agent 之間能不能直接交換結構化資料，仍由各自的工具決定。
 
 ## License
 
-MIT
+[MIT](LICENSE)
