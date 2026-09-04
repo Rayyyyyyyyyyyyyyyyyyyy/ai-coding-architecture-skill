@@ -86,7 +86,7 @@ npx skills@latest add Rayyyyyyyyyyyyyyyyyyyy/ai-coding-architecture-skill --skil
     </tr>
     <tr>
       <td width="240"><a href="skills/debug-with-evidence/"><code>debug-with-evidence</code></a></td>
-      <td>遇到 bug 或效能問題，先讓問題穩定地出現、留下看得見的證據，再判斷原因。除非你叫它修，否則它只負責查清楚。</td>
+      <td>遇到 bug 或效能問題，先讓問題穩定地出現、留下看得見的證據，再判斷原因。同一條路連續失敗三次，就停下來重看目標、假設和其他解法。除非你叫它修，否則它只負責查清楚。</td>
     </tr>
   </tbody>
 </table>

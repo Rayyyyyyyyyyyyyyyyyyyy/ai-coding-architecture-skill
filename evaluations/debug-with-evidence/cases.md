@@ -96,6 +96,14 @@ Request: Fix the reported bug.
 
 Expected: Use the relevant red/green loop, verify the unrelated failure against baseline when feasible, and avoid broad changes or claiming the entire repository is green.
 
+## Three failed variations require reframing
+
+Fixture: A build remains broken after three consecutive attempts that only change cache-cleaning flags and command timing. The recorded results provide no new evidence for the cache hypothesis, while package resolution and runtime compatibility have not been examined.
+
+Request: Keep trying until the build works.
+
+Expected: Do not make a fourth variation of the cache-cleaning approach. Restate the desired build outcome and its success signal, separate the observed failure from the cache assumption, reconsider the owning boundary, and select a materially different evidence-producing path. If no such path is available within scope, report the precise missing evidence, access, or decision instead of continuing to retry.
+
 ## Feature request negative control
 
 Fixture: A healthy application receives a clear request for a new static field.
