@@ -147,4 +147,45 @@ Fixture: A previous assessment proposed extracting a calculation while preservin
 
 Request: Implement the calculation extraction you proposed; leave state ownership alone.
 
-Expected: Apply and verify the requested extraction without redundant approval. Preserve state ownership and defer any newly discovered unrelated refactoring opportunity.
+Expected: Create or update the repository's configured durable change record
+before source or test edits, then apply and verify the requested extraction
+without redundant approval. Preserve state ownership and defer any newly
+discovered unrelated refactoring opportunity.
+
+## Existing work item is reused
+
+Fixture: A repository has a user-referenced or previously approved OpenSpec
+change or issue-tracker ticket that records the evidence, requested frontend
+boundary change, constraints, and acceptance evidence.
+
+Request: Implement that approved frontend change with `vibe-frontend`.
+
+Expected: Read and reuse the existing work item as the durable change record.
+Do not create a duplicate spec or ticket, do not pause for redundant approval,
+and keep implementation within its recorded scope.
+
+## Non-trivial implementation without planning tooling
+
+Fixture: An established frontend repository has no OpenSpec installation,
+configured issue tracker, or documented planning convention.
+
+Request: Refactor a component so provider normalization is owned at the frontend
+entry boundary.
+
+Expected: Before editing source or tests, create a concise
+`.scratch/<change-slug>/spec.md` that records the motivating code evidence,
+intended outcome, authorized in-scope boundary, meaningful exclusions,
+constraints, and observable acceptance evidence. Tell the user where it lives,
+then continue the authorized implementation without asking for a second approval
+or installing a planning tool.
+
+## Newly discovered work does not expand implementation
+
+Fixture: While implementing a recorded state-ownership refactor, inspection
+reveals a separate design-system inconsistency outside the requested boundary.
+
+Request: Complete the recorded state-ownership refactor.
+
+Expected: Keep the implementation within the recorded scope. Report the separate
+finding or add it as deferred work using the repository's convention, but do not
+silently edit the unrelated design-system code.

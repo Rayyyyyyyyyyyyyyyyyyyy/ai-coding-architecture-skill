@@ -47,7 +47,7 @@ npx skills@latest add Rayyyyyyyyyyyyyyyyyyyy/ai-coding-architecture-skill --skil
     <tr>
       <td width="240">看前端</td>
       <td width="240"><a href="skills/vibe-frontend/"><code>vibe-frontend</code></a></td>
-      <td>檢查前端責任、狀態、副作用、資料契約、型別保障與測試邊界；也指導前端實作與重構。</td>
+      <td>檢查前端責任、狀態、副作用、資料契約、型別保障與測試邊界；非瑣碎實作會先留下 change record 再修改。</td>
     </tr>
     <tr>
       <td width="240">找設計原因</td>
@@ -86,6 +86,10 @@ npx skills@latest add Rayyyyyyyyyyyyyyyyyyyy/ai-coding-architecture-skill --skil
 目錄形狀或缺少測試是調查線索，不能單獨證明架構有問題。
 `vibe-frontend` 可以在架構評估時提出有依據的 TypeScript 或資料驗證建議；
 一般 JS 功能開發仍沿用既有語言。
+
+非瑣碎前端實作會先沿用 repo 既有的 spec、OpenSpec 或 ticket；若沒有規劃工具或
+追蹤慣例，則先寫一份輕量的 `.scratch/<change>/spec.md`。這是留存修改依據與範圍，
+不是要求使用者再批准一次，也不會為此安裝額外工具。純評估仍保持唯讀。
 
 `vibe-ux` 關心使用者能不能完成操作；`vibe-frontend` 關心實作這些操作的責任怎麼組織。
 例如刪除圖片，前者檢查失敗時有沒有恢復與提示，後者檢查請求、狀態和撤銷由誰管理。

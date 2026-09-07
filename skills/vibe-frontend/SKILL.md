@@ -1,6 +1,6 @@
 ---
 name: vibe-frontend
-description: Assess an existing frontend's architecture or structure non-trivial frontend changes through clear ownership and justified abstraction. Use for frontend architecture reviews or refactoring questions even when no implementation is requested. Keep advice read-only. Not for backend-only work or cosmetic edits.
+description: Assess an existing frontend's architecture or structure non-trivial frontend changes through clear ownership, a durable change record, and justified abstraction. Use for frontend architecture reviews or refactoring questions even when no implementation is requested. Keep advice read-only. Not for backend-only work or cosmetic edits.
 ---
 
 # Vibe Frontend
@@ -16,7 +16,11 @@ Load each named skill through the host mechanism; call the Skill tool when expos
   has architecture problems or where it should be refactored. A pending code
   change is not required. Report findings with evidence, impact, and recommended
   scope; do not edit files or invoke implementation-completion verification.
-- **Implementation:** when development or refactoring is requested, apply the decision order within the authorized scope. Do not require a second approval for routine in-scope choices; obtain agreement before expanding the scope or resolving a missing product decision.
+- **Implementation:** when development or refactoring is requested, establish the
+  change record below before editing source or tests, then apply the decision
+  order within the authorized scope. Do not require a second approval for routine
+  in-scope choices; obtain agreement before expanding the scope or resolving a
+  missing product decision.
 - Follow user and repository instructions.
 - Preserve the framework, design system, directory conventions, state model, and test strategy unless the task requires change.
 - Own frontend language selection, component/state boundaries, semantic reuse, frontend data normalization, and abstraction decisions.
@@ -27,6 +31,41 @@ Load each named skill through the host mechanism; call the Skill tool when expos
   architecture under this skill.
 - Do not reorganize unrelated modules or absorb cross-unit project architecture,
   security, UX completeness, verification, or handoff ownership.
+
+## Record the change before implementation
+
+Non-trivial frontend implementation and refactoring must begin from a durable
+change record linked to the project. Architecture restructuring, changed
+component/state/effect ownership, new frontend data boundaries, and extracted or
+new abstractions are non-trivial. A routine cosmetic edit is outside this skill
+and does not need this record.
+
+Before editing source or tests:
+
+1. Reuse a user-referenced or previously approved spec, ticket, or equivalent
+   work item when it already defines the requested change. Read it and do not
+   create a duplicate merely to satisfy this gate.
+2. Otherwise follow the repository's configured planning or tracking convention,
+   such as OpenSpec, a local or hosted issue tracker, or a documented proposal
+   workflow. Use only mechanisms already available and authorized; do not install
+   or bootstrap a planning tool for this gate.
+3. If the repository has no such convention, create a concise local record at
+   `.scratch/<change-slug>/spec.md`. Do not add tracker configuration or a full
+   planning system. Tell the user where the record lives, then continue the
+   already authorized implementation without asking for redundant approval.
+
+The record must preserve enough basis for another person or agent to understand:
+
+- the source evidence and problem or requested outcome;
+- the smallest authorized in-scope change and meaningful out-of-scope findings;
+- constraints or decisions that the implementation must preserve; and
+- observable acceptance evidence appropriate to the change.
+
+Keep the artifact proportional; a focused change may need only a short note.
+Creating the record does not expand implementation authority. When an assessment
+or implementation uncovers an unrelated problem, report or record it as deferred
+work rather than editing it. Advice or assessment remains read-only and does not
+create a work item unless the user asks to save one.
 
 ## Assess an existing frontend
 

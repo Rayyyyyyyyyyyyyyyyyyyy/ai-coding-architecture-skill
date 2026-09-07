@@ -1,4 +1,4 @@
 interface:
   display_name: "Vibe Frontend"
   short_description: "Assess and improve frontend architecture"
-  default_prompt: "Use $vibe-frontend to review this frontend's architecture with code evidence, or structure my requested change within its existing conventions; keep assessment read-only."
+  default_prompt: "Use $vibe-frontend to review this frontend's architecture with code evidence, or record and structure my requested change within its existing conventions; keep assessment read-only."
