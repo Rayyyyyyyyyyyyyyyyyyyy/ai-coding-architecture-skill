@@ -30,16 +30,57 @@ npx skills@latest add Rayyyyyyyyyyyyyyyyyyyy/ai-coding-architecture-skill --skil
 
 ## 8 個好記的入口
 
-| 想做什麼 | Skill | 它負責什麼 |
-| :--- | :--- | :--- |
-| 看專案 | [`vibe-project`](skills/vibe-project/) | 解釋架構與資料流、評估全 repo 或跨單元的架構問題，也可以一次做兩者。 |
-| 看前端 | [`vibe-frontend`](skills/vibe-frontend/) | 檢查前端責任、狀態、副作用、資料契約、型別保障與測試邊界；也指導前端實作與重構。 |
-| 找設計原因 | [`vibe-design-context`](skills/vibe-design-context/) | 找回非顯而易見的設計理由；已授權的修改改變長期設計意圖時，同步最近的紀錄。 |
-| 查操作流程 | [`vibe-ux`](skills/vibe-ux/) | 檢查或補齊相關的處理中、空結果、失敗重試、成功、重複操作、鍵盤與版面狀態。 |
-| 找 bug | [`vibe-debug`](skills/vibe-debug/) | 用可重現的證據找出故障原因；要求修復後才修改。 |
-| 安全修改 | [`vibe-safe-change`](skills/vibe-safe-change/) | 處理依賴、金鑰、權限、持久資料、執行環境與恢復等具體風險。 |
-| 驗證結果 | [`vibe-verify`](skills/vibe-verify/) | 執行與風險相稱的檢查，區分程式已改、局部驗證與正式環境實際驗證。 |
-| 交接工作 | [`vibe-handoff`](skills/vibe-handoff/) | 真的交給另一個 Agent 時，傳遞任務狀態、產物、證據與未完成事項。 |
+<table>
+  <thead>
+    <tr>
+      <th width="240" align="left">想做什麼</th>
+      <th width="240" align="left">Skill</th>
+      <th align="left">它負責什麼</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td width="240">看專案</td>
+      <td width="240"><a href="skills/vibe-project/"><code>vibe-project</code></a></td>
+      <td>解釋架構與資料流、評估全 repo 或跨單元的架構問題，也可以一次做兩者。</td>
+    </tr>
+    <tr>
+      <td width="240">看前端</td>
+      <td width="240"><a href="skills/vibe-frontend/"><code>vibe-frontend</code></a></td>
+      <td>檢查前端責任、狀態、副作用、資料契約、型別保障與測試邊界；也指導前端實作與重構。</td>
+    </tr>
+    <tr>
+      <td width="240">找設計原因</td>
+      <td width="240"><a href="skills/vibe-design-context/"><code>vibe-design-context</code></a></td>
+      <td>找回非顯而易見的設計理由；已授權的修改改變長期設計意圖時，同步最近的紀錄。</td>
+    </tr>
+    <tr>
+      <td width="240">查操作流程</td>
+      <td width="240"><a href="skills/vibe-ux/"><code>vibe-ux</code></a></td>
+      <td>檢查或補齊相關的處理中、空結果、失敗重試、成功、重複操作、鍵盤與版面狀態。</td>
+    </tr>
+    <tr>
+      <td width="240">找 bug</td>
+      <td width="240"><a href="skills/vibe-debug/"><code>vibe-debug</code></a></td>
+      <td>用可重現的證據找出故障原因；要求修復後才修改。</td>
+    </tr>
+    <tr>
+      <td width="240">安全修改</td>
+      <td width="240"><a href="skills/vibe-safe-change/"><code>vibe-safe-change</code></a></td>
+      <td>處理依賴、金鑰、權限、持久資料、執行環境與恢復等具體風險。</td>
+    </tr>
+    <tr>
+      <td width="240">驗證結果</td>
+      <td width="240"><a href="skills/vibe-verify/"><code>vibe-verify</code></a></td>
+      <td>執行與風險相稱的檢查，區分程式已改、局部驗證與正式環境實際驗證。</td>
+    </tr>
+    <tr>
+      <td width="240">交接工作</td>
+      <td width="240"><a href="skills/vibe-handoff/"><code>vibe-handoff</code></a></td>
+      <td>真的交給另一個 Agent 時，傳遞任務狀態、產物、證據與未完成事項。</td>
+    </tr>
+  </tbody>
+</table>
 
 架構審查會說明程式證據、具體後果與最小改善範圍。長檔案、JavaScript、
 目錄形狀或缺少測試是調查線索，不能單獨證明架構有問題。
