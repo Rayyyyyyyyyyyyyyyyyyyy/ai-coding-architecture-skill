@@ -1,16 +1,18 @@
 # Host-neutral Skill Composition
 
-Cross-skill composition is an action, not a prose reminder. At the first
-concrete signal owned by another installed skill, invoke that skill through the
-host's skill-loading mechanism when it is not already loaded in the active
-model context. Do not reload it at each later mention or copy its checklist into
-the consuming skill. A later turn or receiving agent must load it again when
-its context does not contain the skill.
+At the first concrete signal owned by another available skill, load it through
+the host's skill mechanism if it is not already in the active context. Do not
+repeat an active load or copy the specialist's checklist into the caller.
+A receiving agent must load instructions absent from its own context.
 
-The mechanism is host-specific: use the host operation that loads the named
-skill; when a Skill tool exists, call it. The behavior is not host-specific. A
-skill must not be invoked without its trigger merely to run the whole collection,
-and one skill's invocation never expands the user's authorization.
+`vibe-project` shares one discovery map between explain, assess, and combined modes.
+A mode change is not a new skill invocation or permission to modify the project.
+`vibe-frontend` owns detailed frontend assessment and implementation;
+`vibe-design-context` owns durable design intent. Use other specialists only where
+their signals apply.
 
-`a2a-handoff` is invoked only at an actual agent-consumer transfer event.
-`rescue-vibe-project` is never composed implicitly; only the user may invoke it.
+One skill's invocation never expands authorization. Assessment stays read-only;
+a request for implementation defines its own scope. `vibe-handoff` applies only at
+an actual transfer to an agent consumer. The [recovery workflow](workflows/recovery.md)
+coordinates existing skills for an explicitly requested stabilization effort;
+an unfinished repository alone does not trigger it.

@@ -1,88 +1,64 @@
 # Skill Routing and Ownership
 
-This collection separates human-facing project explanation, engineering guardrails,
-delegation handoff, and an explicit recovery workflow. A compatible host may select more than one skill
-for a task, but each skill owns one decision so composition does not turn into
-duplicated checklists.
+Use the collection prefix `vibe-` plus a short invocation name and precise task
+descriptions. The prefix identifies this collection; it does not alter scope.
+Select only skills
+whose concrete task signals apply; names alone do not broaden authorization.
 
-## Invocation categories
-
-### Human-facing project explanation
-
-`explain-project` may be selected when the user wants to understand an existing
-project's architecture, responsibilities, or data flow. It reads current wiring
-and explains representative paths in plain language, including incomplete work
-and evidence limits. It is normally discoverable, with no user-only invocation
-restriction. A walkthrough is read-only unless the user requests an explanation
-artifact; it does not itself authorize application changes.
-
-This entry point answers how the current project works for a human.
-`architecture-context` answers which durable design intent a change must preserve.
-A normal implementation task does not need a whole-project walkthrough.
-
-### Model-invoked engineering guardrails
-
-These skills may be selected when their concrete task signal is present:
-
-| Skill | Select when | Owns |
+| Requested outcome | Skill or mode | Owns |
 | --- | --- | --- |
-| `coding-architecture` | A non-trivial frontend, UI-state, design-system, or frontend data-boundary change is being assessed, implemented, or refactored. | Frontend language selection, structure, semantic reuse, composition, and ownership boundaries. |
-| `architecture-context` | Existing architecture documentation governs the changed scope, or the change alters a durable ownership, public-boundary, dependency, state, or external-boundary decision. | Recovering and preserving non-obvious architectural intent in the repository. |
-| `safe-change` | Implementation or review touches a listed risk boundary, or diagnosis concerns a suspected violation of one. | Whether the boundary is violated and any mutation is safe, authorized, compatible, and recoverable. |
-| `experience-completeness` | An interactive user journey has relevant asynchronous, data-dependent, destructive, responsive, keyboard, or assistive-technology states. | Selecting and completing the real-world states needed for that journey. |
-| `debug-with-evidence` | Software is reported or observed as broken, slow, intermittent, flaky, or regressed. | The failure-investigation loop and the evidence-supported diagnosis. |
-| `verify-before-done` | An executable change is being finished. | Selecting decisive evidence and calibrating the completion claim. |
+| Understand architecture or data flow | `vibe-project`: explain | Source-grounded human walkthrough, wiring, gaps, and evidence limits. |
+| Identify system architecture problems | `vibe-project`: assess | Material system ownership, dependency, data, interface, recovery, and change-locality findings. |
+| Understand and assess | `vibe-project`: both | One shared map and evidence set, followed by explanation and supported findings. |
+| Assess or change frontend structure | `vibe-frontend` | Component/state/effect ownership, semantic reuse, frontend contracts, typing, and test seams. |
+| Recover or preserve design intent | `vibe-design-context` | Non-obvious durable reasons and constraints. |
+| Assess or complete relevant user-visible states | `vibe-ux` | Journey states and recovery feedback. |
+| Diagnose broken or slow behavior | `vibe-debug` | Causal evidence and diagnosis; fixes only when requested. |
+| Judge concrete trust, data, or runtime risk | `vibe-safe-change` | Relevant safety and recovery boundaries. |
+| Verify an executable change or an explicit verification request | `vibe-verify` | Proportionate evidence and calibrated completion claims. |
+| Transfer work to an agent consumer | `vibe-handoff` | Precise task state, artifacts, and limits at a real handoff. |
 
-Selection is signal-based, not mandatory for every task. A static copy edit
-does not need a user-journey audit, and a healthy feature request does not need
-a debugging workflow.
+## Project modes
 
-### Delegation-event handoff
+No pending implementation is needed to explain or assess an existing repository.
+Choose the mode from the user's words without requiring a special command syntax.
+“Show me how it works” selects explanation; “is this architecture problematic?”
+selects assessment; “explain it and flag problems” selects both.
 
-`a2a-handoff` applies only when an agent task is delegated, transferred,
-resumed by another agent, or returned to an agent consumer. It owns transfer
-semantics and formatting, not implementation quality. It should not activate
-for ordinary human-only explanations or every completed code change.
+Share the repository map and already inspected evidence between modes and
+follow-up turns. Recheck changed or previously uninspected boundaries. A pure
+explanation reports meaningful implementation gaps without becoming a general
+architecture audit. All project modes remain read-only, apart from explicitly
+requested report artifacts.
 
-### Explicit recovery workflow
+For a frontend-only structural judgment, use `vibe-frontend`. A `vibe-project`
+assessment may use it for detailed intra-frontend findings while retaining
+responsibility for the overall coverage and cross-unit contracts. Neither mode
+claims whole-repository health from one inspected slice.
 
-`rescue-vibe-project` coordinates recovery only when the user explicitly asks
-to rescue, stabilize, untangle, or regain confidence in an existing project.
-Its `SKILL.md` declares `disable-model-invocation: true` for Agent Skills hosts
-that honor that field, while `agents/openai.yaml` sets
-`allow_implicit_invocation: false` for OpenAI/Codex. Hosts that support neither
-mechanism must still preserve the explicit-only behavior.
+## Composition and authorization
 
-## Composition rules
+See [skill composition](skill-composition.md). Specialist invocation retains the
+user's scope and does not automatically authorize code or record changes.
 
-See [Host-neutral skill composition](skill-composition.md) for signal-gated,
-context-aware invocation and how it maps across hosts.
+- `vibe-project` shares discovery between its modes and uses specialist judgment
+  only where a concrete concern needs it.
+- `vibe-frontend` owns frontend structure; `vibe-ux` owns which user-visible states
+  need to exist, and `vibe-safe-change` owns trusted enforcement.
+- `vibe-design-context` corroborates documented intent and preserves it only within
+  authorized changes; stale records alone do not authorize a rewrite.
+- `vibe-debug` supplies causal evidence; `vibe-verify` consumes relevant evidence when
+  finishing an authorized fix rather than repeating diagnosis.
+- `vibe-handoff` is for another agent, never a mandatory human-facing completion step.
 
-The user's request and repository instructions always take precedence. When
-several skills apply, preserve these ownership boundaries:
+## Recovery as a documented workflow
 
-- `explain-project` explains current implementation to the user; discovering a
-  gap during a walkthrough does not trigger repair or architecture-record edits;
-- `safe-change` may require a decision or authorization before a risky mutation;
-- `debug-with-evidence` determines what failed and why, but does not invent
-  permission to implement a fix;
-- `experience-completeness` selects relevant journey states, while
-  `coding-architecture` decides how their frontend implementation fits the
-  existing codebase;
-- `architecture-context` records only durable intent that future contributors
-  could not reliably recover from implementation evidence;
-- architecture advice, architecture-context inquiry, and journey-state assessment
-  remain read-only; implementation rules apply only to authorized changes;
-- `verify-before-done` verifies the selected behavior and controls the final
-  confidence claim instead of redefining the other skills' requirements;
-- `a2a-handoff` transfers the resulting state and durable artifacts without
-  becoming another implementation checklist;
-- `rescue-vibe-project` sequences applicable guardrails for one recovery slice
-  after presenting findings and obtaining user agreement on the repair checklist,
-  without absorbing their responsibilities.
+[Recovery](workflows/recovery.md) coordinates existing skills when the user asks
+to stabilize a broken project. It is not a ninth skill or an automatically
+invoked prerequisite for a partially built repository. Preserve the agreed
+repair scope and record unverified or deferred work. Ordinary project inquiry
+does not start repairs.
 
-These are ownership rules, not a fixed pipeline. When a concrete signal calls
-for an installed owning skill, invoke it through the host's skill-loading
-mechanism if it is not already present in the active context. Invoke
-`a2a-handoff` only at an actual agent transfer. Apply only the skills and
-ordering justified by the task.
+Historical names and snapshots are retained in prior specs and evaluation runs.
+Current invocation names and installation directories are the eight listed in
+[README](../README.md).

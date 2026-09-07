@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vibe Verify"
+  short_description: "Match completion claims to observed evidence"
+  default_prompt: "Use $vibe-verify to select proportionate evidence, run the relevant checks, and limit the completion claim to what they actually prove."

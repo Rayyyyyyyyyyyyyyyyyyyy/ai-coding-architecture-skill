@@ -1,4 +1,8 @@
-# Explain Project Cases
+# Project Explanation Cases
+
+Run current cases with `vibe-project` in explain mode. This directory retains its
+historical name for existing fixture and execution-record links; recorded runs
+under `runs/` describe the old skill and are not evidence for the merged one.
 
 Use the shared [evaluation method](../README.md). Observe the explanation and any mutations, not whether the agent repeats skill headings. Keep fixture expectations out of the evaluated agent's prompt. A passing static walkthrough is not runtime verification of the fixture.
 

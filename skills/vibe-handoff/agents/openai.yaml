@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vibe Handoff"
+  short_description: "Transfer precise state at agent handoff events"
+  default_prompt: "Use $vibe-handoff to transfer this task with exact status, durable artifacts, and no unnecessary narrative."

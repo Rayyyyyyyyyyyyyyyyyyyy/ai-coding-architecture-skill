@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reader</title>
+<style>
+  #preferences { position: fixed; top: 80px; left: 32px; width: 640px; padding: 24px; background: white; border: 1px solid; }
+</style>
+<button id="open">Preferences</button>
+<main><p id="article">An article to read.</p><a href="#more">More articles</a></main>
+<div id="preferences" hidden>
+  <h2>Reader preferences</h2>
+  <label>Text size <select id="size"><option value="16">Standard</option><option value="24">Large</option></select></label>
+  <button id="close">Close</button>
+</div>
+<script>
+  const preferences = document.querySelector('#preferences');
+  document.querySelector('#open').onclick = () => { preferences.hidden = false; };
+  document.querySelector('#close').onclick = () => { preferences.hidden = true; };
+  document.querySelector('#size').onchange = event => {
+    document.querySelector('#article').style.fontSize = `${event.target.value}px`;
+  };
+</script>
+</html>

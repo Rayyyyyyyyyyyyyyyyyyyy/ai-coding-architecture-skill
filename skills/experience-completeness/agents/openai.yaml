@@ -1,4 +1,0 @@
-interface:
-  display_name: "Experience Completeness"
-  short_description: "Complete only the user states a flow actually signals"
-  default_prompt: "Use $experience-completeness to identify this flow's relevant user-visible states; report a checklist for assessment requests and complete states only when implementation is requested."

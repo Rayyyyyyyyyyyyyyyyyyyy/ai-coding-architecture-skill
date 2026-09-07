@@ -1,4 +1,0 @@
-interface:
-  display_name: "Debug With Evidence"
-  short_description: "Diagnose with evidence; fix only when asked"
-  default_prompt: "Use $debug-with-evidence to establish a red-capable feedback loop and isolate the cause. Apply the smallest verified fix only if I requested a fix."

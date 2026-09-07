@@ -1,4 +1,0 @@
-interface:
-  display_name: "Explain Project"
-  short_description: "Explain current architecture and data flow in plain language"
-  default_prompt: "Use $explain-project to walk me through this project's current architecture and data flow in plain language, including what is unfinished or unverified, without changing the project."

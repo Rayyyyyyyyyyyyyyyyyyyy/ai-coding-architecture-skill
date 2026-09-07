@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vibe Project"
+  short_description: "Understand a repo and assess its architecture"
+  default_prompt: "Use $vibe-project to explain this repository and identify material architecture problems with source evidence, keeping the review read-only."

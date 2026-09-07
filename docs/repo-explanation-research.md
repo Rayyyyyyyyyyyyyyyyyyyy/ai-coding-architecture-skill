@@ -1,12 +1,12 @@
 # 讓使用者快速理解開發中的 repository
 
-研究日期：2026-09-07。狀態：原始研究提案已實作為 [explain-project](../skills/explain-project/SKILL.md)；隔離範例的評估見[執行紀錄](../evaluations/explain-project/runs/2026-09-07/README.md)，尚未在真實產品 repo 上評估效果。
+研究日期：2026-09-07。以下保留原始研究時的名稱與結論。當時的 explain-project 已整併為 [project](../skills/vibe-project/SKILL.md) 的解說模式；早期隔離範例見[執行紀錄](../evaluations/explain-project/runs/2026-09-07/README.md)，這些紀錄不代表合併後的 skill 已經通過行為評估。
 
 ## 結論
 
 建議獨立成為 `explain-project`：讀取目前 checkout 的實作，先用使用者的語言說清楚產品做什麼、各部分負責什麼、資料怎麼走，以及哪些地方尚未接通。主要交付是對話中的說明；有需要才保存為使用者文件。
 
-這符合本集合「使用者不需要工程詞彙也能得到負責任的工程行為」的目標。既有 `architecture-context` 明確排除一般 repository 熟悉工作，負責的是找回與維護非顯而易見的架構意圖；兩者的使用者與完成條件不同。前者要讓人理解目前產品，後者要讓後續變更保留重要理由與邊界。[集合理念](philosophy.md)、[architecture-context](../skills/architecture-context/SKILL.md)
+這符合本集合「使用者不需要工程詞彙也能得到負責任的工程行為」的目標。既有 `architecture-context` 明確排除一般 repository 熟悉工作，負責的是找回與維護非顯而易見的架構意圖；兩者的使用者與完成條件不同。前者要讓人理解目前產品，後者要讓後續變更保留重要理由與邊界。[集合理念](philosophy.md)、[現名 design-context](../skills/vibe-design-context/SKILL.md)
 
 以下流程與評估案例是根據來源及本 repo 邊界推導出的設計建議，並非 C4 或 arc42 規定的 agent 工作流程。
 

@@ -1,4 +1,0 @@
-interface:
-  display_name: "Architecture Context"
-  short_description: "Preserve non-obvious architecture decisions"
-  default_prompt: "Use $architecture-context to recover the non-obvious architectural intent this task depends on; report inquiry findings without edits, and preserve intent within authorized changes."

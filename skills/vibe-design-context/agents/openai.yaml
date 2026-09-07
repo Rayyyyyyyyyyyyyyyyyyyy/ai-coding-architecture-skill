@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vibe Design Context"
+  short_description: "Preserve non-obvious architecture decisions"
+  default_prompt: "Use $vibe-design-context to recover the non-obvious architectural intent this task depends on; report inquiry findings without edits, and preserve intent within authorized changes."

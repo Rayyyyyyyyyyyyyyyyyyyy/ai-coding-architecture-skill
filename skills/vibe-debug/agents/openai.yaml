@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vibe Debug"
+  short_description: "Diagnose with evidence; fix only when asked"
+  default_prompt: "Use $vibe-debug to establish a red-capable feedback loop and isolate the cause. Apply the smallest verified fix only if I requested a fix."

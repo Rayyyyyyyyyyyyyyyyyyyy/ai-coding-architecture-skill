@@ -70,13 +70,19 @@ violation. Preserve the per-criterion scores rather than comparing totals alone.
 
 ## Specification suites
 
-- [Coding architecture](coding-architecture/cases.md)
-- [Architecture context](architecture-context/cases.md)
-- [Safe change](safe-change/cases.md)
-- [Verify before done](verify-before-done/cases.md)
-- [A2A handoff](a2a-handoff/cases.md)
-- [Experience completeness](experience-completeness/cases.md)
-- [Debug with evidence](debug-with-evidence/cases.md)
-- [Rescue vibe project](rescue-vibe-project/cases.md)
+- [Project: assessment and combined modes](vibe-project/cases.md)
+- [Project: explanation](explain-project/cases.md)
+- [Frontend](vibe-frontend/cases.md)
+- [Design context](vibe-design-context/cases.md)
+- [Safe change](vibe-safe-change/cases.md)
+- [Verify](vibe-verify/cases.md)
+- [Handoff](vibe-handoff/cases.md)
+- [UX](vibe-ux/cases.md)
+- [Debug](vibe-debug/cases.md)
+- [Recovery workflow](recovery/cases.md)
 - [Cross-skill behavior](cross-skill/cases.md)
-- [Explain project](explain-project/cases.md)
+
+Historical execution records retain their original names and skill snapshots.
+The `explain-project/runs/` directory is historical evidence; current explanation
+cases target `vibe-project`. Do not count old runs or newly written case specifications
+as completed evaluations of the consolidated skill.
