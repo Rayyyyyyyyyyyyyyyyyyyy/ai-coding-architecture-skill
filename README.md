@@ -6,7 +6,7 @@
 
 [![Install with skills.sh](https://skills.sh/b/Rayyyyyyyyyyyyyyyyyyyy/ai-coding-architecture-skill)](https://skills.sh/Rayyyyyyyyyyyyyyyyyyyy/ai-coding-architecture-skill)
 
-[直接安裝](#直接安裝) · [看看有哪些-skills](#這-8-個-skills-各自管什麼) · [怎麼使用](#基本上不用特別做什麼)
+[直接安裝](#直接安裝) · [看看有哪些-skills](#這-9-個-skills-各自管什麼) · [怎麼使用](#基本上不用特別做什麼)
 
 </div>
 
@@ -23,11 +23,11 @@
 - 只想改一個小地方，結果半個專案一起被翻修
 - AI 說「完成了」，但重要的測試根本沒跑
 
-這個 repo 收了 8 個 skills，專門替 AI 補上這些容易被忽略的工程習慣。
+這個 repo 收了 9 個 skills，幫你看懂專案，也替 AI 補上這些容易被忽略的工程習慣。
 
 它們不是要把每個需求變成一場架構會議，也不是要 AI 回答得更像教科書。它們只希望 AI 在動手之前多看一眼、做完之後多確認一步，讓今天省下來的時間，不會變成下個月要還的技術債。
 
-> 其中 6 個會在平常寫程式時派上用場；1 個只管 Agent 之間的交接；最後 1 個是專案已經亂掉時才會主動叫來的救援隊。
+> 其中 6 個會在平常寫程式時派上用場；1 個用白話帶你看懂現有專案；1 個只管 Agent 之間的交接；1 個是專案已經亂掉時才會主動叫來的救援隊。
 
 ## 直接安裝
 
@@ -52,7 +52,17 @@ npx skills@latest add Rayyyyyyyyyyyyyyyyyyyy/ai-coding-architecture-skill --skil
 
 不熟終端機也沒關係，把上面的指令丟給幫你設定開發環境的人就好。
 
-## 這 8 個 skills 各自管什麼
+## 這 9 個 skills 各自管什麼
+
+### 先看懂做到一半的專案
+
+[`explain-project`](skills/explain-project/) 從目前的程式追查，用白話說明產品在做什麼、各部分負責什麼、資料從哪裡來、送出後存去哪裡，以及哪些地方還是假資料或尚未接通。
+
+```text
+請使用 $explain-project，帶我看懂這個專案的架構與資料流，先不要改程式。
+```
+
+你不需要自己讀給 Agent 的指令文件。它會直接解說具體操作背後的流程，附少量程式連結供追問；沒有實際執行驗證的部分，也會說清楚。第一輪先建立主要架構與代表流程的全貌，再依你的問題深入。
 
 ### 平常寫程式時
 

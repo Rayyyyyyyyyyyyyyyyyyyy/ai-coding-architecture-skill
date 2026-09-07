@@ -41,6 +41,8 @@ The six routine engineering guardrails should each answer one recurring engineer
 
 `a2a-handoff` is a cross-cutting transfer contract reached only at a real delegation or agent-handoff event: What is the smallest precise task state another agent needs to continue correctly?
 
+`explain-project` is a human-facing, read-only walkthrough: What does this project currently do, how do its parts and data fit together, and what remains incomplete or unverified? It explains implementation from evidence without turning the walkthrough into architecture maintenance or rescue.
+
 `rescue-vibe-project` is an explicit user-invoked workflow that coordinates relevant guardrails to restore one trustworthy vertical slice.
 
 Do not turn one skill into a universal "be a good engineer" prompt. Add a new skill only when it has:
@@ -73,7 +75,7 @@ Cross-agent evaluations should allow implementation and wording to differ while 
 
 ## Evidence-driven growth
 
-The current collection contains six routine engineering guardrails, one delegation-event handoff contract, and one explicit rescue workflow. Add project bootstrap, dependency, auth, data-boundary, database-change, release, or other skills only when behavioral evidence shows that an existing concern is overloaded or a distinct failure mode recurs.
+The current collection contains six routine engineering guardrails, one human-facing project walkthrough, one delegation-event handoff contract, and one explicit rescue workflow. Add project bootstrap, dependency, auth, data-boundary, database-change, release, or other skills only when behavioral evidence shows that an existing concern is overloaded or a distinct failure mode recurs.
 
 Do not create skills to complete a taxonomy.
 

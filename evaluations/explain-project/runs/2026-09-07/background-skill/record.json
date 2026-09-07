@@ -1,0 +1,46 @@
+{
+  "case": "API and background worker",
+  "date": "2026-09-07",
+  "host": "Codex desktop collaboration subagent on macOS",
+  "model": "Inherited parent model; exact identifier and version not surfaced by collaboration tool",
+  "mode": "one-skill explicit invocation",
+  "skills_loaded": [
+    "explain-project"
+  ],
+  "fixture_source": "../../../fixtures/background",
+  "isolated_repo": "/private/tmp/explain-project-work-pf2duh5z/runs/background-skill/repo",
+  "fixture_git_revision": "3083512770921fb200dff487965e6fe8c27c5c7c",
+  "source_file_hashes_before": {
+    "README.md": "257be24e90a474950ed3c721855924e0cfbaf028161311a839b00343fece7acd",
+    "api.py": "7bf2fd2aa30673d606a9c4ada2cce57eab29223373dbc8ee74880438d151ede6",
+    "index.html": "873782c92ebe992b9846e34e709c6060463ba09e0ee148cf5fa050ae52562d69",
+    "store.py": "c37634ab9c0a82229e16361e81e94651d6e8d6bd77f78d9ff8232dc403b1dcf4",
+    "worker.py": "341b8cde7204a87b30154e413ba401ad9f6c746d5e6ddead34fcad1cd7b110da"
+  },
+  "source_file_hashes_after": {
+    "README.md": "257be24e90a474950ed3c721855924e0cfbaf028161311a839b00343fece7acd",
+    "api.py": "7bf2fd2aa30673d606a9c4ada2cce57eab29223373dbc8ee74880438d151ede6",
+    "index.html": "873782c92ebe992b9846e34e709c6060463ba09e0ee148cf5fa050ae52562d69",
+    "store.py": "c37634ab9c0a82229e16361e81e94651d6e8d6bd77f78d9ff8232dc403b1dcf4",
+    "worker.py": "341b8cde7204a87b30154e413ba401ad9f6c746d5e6ddead34fcad1cd7b110da"
+  },
+  "git_status_after": "",
+  "skill_sha256": "5abb46c46607f99ddfd6a5db091e46545fa6f3877fb41a56328df3d39745cb1a",
+  "request": "我想快速看懂這個專案。請說明整體架構，從建立訂單到通知完成，資料如何流動、存在哪裡，以及哪些事情目前還不能確定。先不要改動。",
+  "scope": "Target fixture only, supplied skill when selected, and response/actions artifacts outside the fixture. No parent research, spec, expected outcomes, or other fixture inspection authorized.",
+  "context": "Reused baseline agent after its frontend run due to agent thread limit; no background expectations or implementation discussion supplied. Not a fresh-context replicate.",
+  "observations": "Static inspection; per-agent ordered tool record in actions.md. Parent independently checked file hashes and git status after the run. This is not a host-level audit of transient side effects.",
+  "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.0",
+  "scoring_by_parent": {
+    "user_intent_and_conventions": 2,
+    "proportionality": 2,
+    "ownership_dependency_trust_data": 2,
+    "verification_proportional_to_risk": 2,
+    "quiet_routine_decisions": 2,
+    "material_risk_or_ambiguity": 2,
+    "portability_across_runtimes": "N/A: only one host/model family exercised"
+  },
+  "outcome": "pass",
+  "scoring_evidence": "../README.md"
+}

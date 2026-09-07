@@ -1,11 +1,24 @@
 # Skill Routing and Ownership
 
-This collection separates engineering guardrails, delegation handoff, and an
-explicit recovery workflow. A compatible host may select more than one skill
+This collection separates human-facing project explanation, engineering guardrails,
+delegation handoff, and an explicit recovery workflow. A compatible host may select more than one skill
 for a task, but each skill owns one decision so composition does not turn into
 duplicated checklists.
 
 ## Invocation categories
+
+### Human-facing project explanation
+
+`explain-project` may be selected when the user wants to understand an existing
+project's architecture, responsibilities, or data flow. It reads current wiring
+and explains representative paths in plain language, including incomplete work
+and evidence limits. It is normally discoverable, with no user-only invocation
+restriction. A walkthrough is read-only unless the user requests an explanation
+artifact; it does not itself authorize application changes.
+
+This entry point answers how the current project works for a human.
+`architecture-context` answers which durable design intent a change must preserve.
+A normal implementation task does not need a whole-project walkthrough.
 
 ### Model-invoked engineering guardrails
 
@@ -48,6 +61,8 @@ context-aware invocation and how it maps across hosts.
 The user's request and repository instructions always take precedence. When
 several skills apply, preserve these ownership boundaries:
 
+- `explain-project` explains current implementation to the user; discovering a
+  gap during a walkthrough does not trigger repair or architecture-record edits;
 - `safe-change` may require a decision or authorization before a risky mutation;
 - `debug-with-evidence` determines what failed and why, but does not invent
   permission to implement a fix;

@@ -1,7 +1,7 @@
 # Behavioral Evaluation Case Specifications
 
-This directory currently defines evaluation cases; it does not contain claims
-that the collection has already passed them. A case becomes evaluation evidence
+This directory defines evaluation cases and, where available, recorded runs.
+Case specifications alone do not show that the collection has passed them. A case becomes evaluation evidence
 only when it is run against an isolated fixture and the invocation, output,
 artifacts, scoring, and environment are recorded.
 
@@ -79,3 +79,4 @@ violation. Preserve the per-criterion scores rather than comparing totals alone.
 - [Debug with evidence](debug-with-evidence/cases.md)
 - [Rescue vibe project](rescue-vibe-project/cases.md)
 - [Cross-skill behavior](cross-skill/cases.md)
+- [Explain project](explain-project/cases.md)

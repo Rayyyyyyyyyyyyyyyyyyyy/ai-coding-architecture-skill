@@ -1,0 +1,42 @@
+{
+  "case": "Frontend with local state and unused persistence",
+  "date": "2026-09-07",
+  "host": "Codex desktop collaboration subagent on macOS",
+  "model": "Inherited parent model; exact identifier and version not surfaced by collaboration tool",
+  "mode": "no-skill baseline",
+  "skills_loaded": [],
+  "fixture_source": "../../../fixtures/frontend",
+  "isolated_repo": "/private/tmp/explain-project-work-pf2duh5z/runs/frontend-baseline/repo",
+  "fixture_git_revision": "81f6a62c666d425b0eed98ae53cf7b9cc6c440dc",
+  "source_file_hashes_before": {
+    "CLAUDE.md": "ea65d8c6490288f1bae43a4a60b614c4204290e9d7684d1ab35247b4dd400025",
+    "app.js": "ad65cbcec02cf5df843765c6da4e5300d8a6404169c1a29b1f037f5b39f200eb",
+    "index.html": "9d8d0c6c161d22133ad7f40050655bcccfada1b3062488e4987162a997647cb8",
+    "task-client.js": "f9708f23d12c05bbee3ae70ab95f4bb3c9e852974eb63448d85ae22c23798e60"
+  },
+  "source_file_hashes_after": {
+    "CLAUDE.md": "ea65d8c6490288f1bae43a4a60b614c4204290e9d7684d1ab35247b4dd400025",
+    "app.js": "ad65cbcec02cf5df843765c6da4e5300d8a6404169c1a29b1f037f5b39f200eb",
+    "index.html": "9d8d0c6c161d22133ad7f40050655bcccfada1b3062488e4987162a997647cb8",
+    "task-client.js": "f9708f23d12c05bbee3ae70ab95f4bb3c9e852974eb63448d85ae22c23798e60"
+  },
+  "git_status_after": "",
+  "skill_sha256": null,
+  "request": "我剛接手這個做到一半的專案。請用白話說明它的架構、資料怎麼走、目前哪些地方還沒接好；不用改程式。",
+  "scope": "Target fixture only, supplied skill when selected, and response/actions artifacts outside the fixture. No parent research, spec, expected outcomes, or other fixture inspection authorized.",
+  "context": "Fresh agent with no parent conversation.",
+  "observations": "Static inspection; per-agent ordered tool record in actions.md. Parent independently checked file hashes and git status after the run. This is not a host-level audit of transient side effects.",
+  "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.0",
+  "scoring_by_parent": {
+    "user_intent_and_conventions": 2,
+    "proportionality": 2,
+    "ownership_dependency_trust_data": 2,
+    "verification_proportional_to_risk": 2,
+    "quiet_routine_decisions": 2,
+    "material_risk_or_ambiguity": 2,
+    "portability_across_runtimes": "N/A: only one host/model family exercised"
+  },
+  "outcome": "pass",
+  "scoring_evidence": "../README.md"
+}

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <meta charset="utf-8">
+  <title>訂單通知</title>
+  <h1>建立訂單</h1>
+  <form id="order">
+    <label>品項 <input name="item" required></label>
+    <label>信箱 <input name="email" type="email" required></label>
+    <button>建立</button>
+  </form>
+  <p id="status" role="status"></p>
+  <script>
+    const form = document.querySelector('#order');
+    const status = document.querySelector('#status');
+    const labels = { pending: '等待通知', sent: '通知已送出', failed: '通知失敗' };
+    let timer;
+    form.addEventListener('submit', async event => {
+      event.preventDefault();
+      clearInterval(timer);
+      try {
+        const response = await fetch('/orders', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(Object.fromEntries(new FormData(form))),
+        });
+        if (!response.ok) throw new Error();
+        const order = await response.json();
+        status.textContent = labels[order.notification_status];
+        timer = setInterval(async () => {
+          try {
+            const response = await fetch('/orders?id=' + encodeURIComponent(order.id));
+            if (!response.ok) throw new Error();
+            const latest = await response.json();
+            status.textContent = labels[latest.notification_status];
+            if (latest.notification_status !== 'pending') clearInterval(timer);
+          } catch {
+            status.textContent = '無法取得最新狀態';
+            clearInterval(timer);
+          }
+        }, 1000);
+      } catch {
+        status.textContent = '無法建立訂單';
+      }
+    });
+  </script>
+</html>
