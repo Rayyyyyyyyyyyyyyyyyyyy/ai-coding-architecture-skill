@@ -26,7 +26,7 @@ These skills may be selected when their concrete task signal is present:
 
 | Skill | Select when | Owns |
 | --- | --- | --- |
-| `coding-architecture` | A non-trivial frontend, UI-state, design-system, or frontend data-boundary change is being implemented or refactored. | Frontend language selection, structure, semantic reuse, composition, and ownership boundaries. |
+| `coding-architecture` | A non-trivial frontend, UI-state, design-system, or frontend data-boundary change is being assessed, implemented, or refactored. | Frontend language selection, structure, semantic reuse, composition, and ownership boundaries. |
 | `architecture-context` | Existing architecture documentation governs the changed scope, or the change alters a durable ownership, public-boundary, dependency, state, or external-boundary decision. | Recovering and preserving non-obvious architectural intent in the repository. |
 | `safe-change` | Implementation or review touches a listed risk boundary, or diagnosis concerns a suspected violation of one. | Whether the boundary is violated and any mutation is safe, authorized, compatible, and recoverable. |
 | `experience-completeness` | An interactive user journey has relevant asynchronous, data-dependent, destructive, responsive, keyboard, or assistive-technology states. | Selecting and completing the real-world states needed for that journey. |
@@ -71,11 +71,14 @@ several skills apply, preserve these ownership boundaries:
   existing codebase;
 - `architecture-context` records only durable intent that future contributors
   could not reliably recover from implementation evidence;
+- architecture advice, architecture-context inquiry, and journey-state assessment
+  remain read-only; implementation rules apply only to authorized changes;
 - `verify-before-done` verifies the selected behavior and controls the final
   confidence claim instead of redefining the other skills' requirements;
 - `a2a-handoff` transfers the resulting state and durable artifacts without
   becoming another implementation checklist;
 - `rescue-vibe-project` sequences applicable guardrails for one recovery slice
+  after presenting findings and obtaining user agreement on the repair checklist,
   without absorbing their responsibilities.
 
 These are ownership rules, not a fixed pipeline. When a concrete signal calls

@@ -2,11 +2,11 @@
 
 # Vibe Coding Engineering Guardrails
 
-**你負責想產品，這套 skills 幫 AI 別把專案越寫越難改。**
+**先看懂專案，再放心修改。這套 skills 幫 AI 別把專案越寫越難改。**
 
 [![Install with skills.sh](https://skills.sh/b/Rayyyyyyyyyyyyyyyyyyyy/ai-coding-architecture-skill)](https://skills.sh/Rayyyyyyyyyyyyyyyyyyyy/ai-coding-architecture-skill)
 
-[直接安裝](#直接安裝) · [看看有哪些-skills](#這-9-個-skills-各自管什麼) · [怎麼使用](#基本上不用特別做什麼)
+[直接安裝](#直接安裝) · [看看有哪些-skills](#這-9-個-skills-各自管什麼) · [怎麼使用](#基本上不用特別做什麼) · [維護這個-repo](#維護這個-repo)
 
 </div>
 
@@ -76,11 +76,11 @@ npx skills@latest add Rayyyyyyyyyyyyyyyyyyyy/ai-coding-architecture-skill --skil
   <tbody>
     <tr>
       <td width="240"><a href="skills/coding-architecture/"><code>coding-architecture</code></a></td>
-      <td>寫新功能前，先看看專案原本怎麼做。能沿用就沿用，能組合就組合，不要每次都另起爐灶。</td>
+      <td>寫新功能前，先看看專案原本怎麼做。能沿用就沿用，能組合就組合。只問重構建議時，先列出問題、影響與建議範圍；要求實作後才修改。</td>
     </tr>
     <tr>
       <td width="240"><a href="skills/architecture-context/"><code>architecture-context</code></a></td>
-      <td>如果有些架構決定光看程式猜不出來，就把原因留在 repo 裡，免得下一個人又從頭猜一次。它不是專案百科，也不會記住每個檔案。</td>
+      <td>找回光看程式猜不出的架構決定。只問現有設計時，說明原因與文件衝突；已授權的修改改變設計意圖時，再同步最近的架構紀錄。</td>
     </tr>
     <tr>
       <td width="240"><a href="skills/safe-change/"><code>safe-change</code></a></td>
@@ -92,7 +92,7 @@ npx skills@latest add Rayyyyyyyyyyyyyyyyyyyy/ai-coding-architecture-skill --skil
     </tr>
     <tr>
       <td width="240"><a href="skills/experience-completeness/"><code>experience-completeness</code></a></td>
-      <td>畫面不只要在理想狀況下能用。載入中、沒資料、出錯、重複點擊、手機畫面和鍵盤操作，也要在真的需要時顧到。</td>
+      <td>盤點流程真正需要的載入、空資料、錯誤、重複操作及無障礙等狀態。只問缺什麼時先交清單；要求補齊後才實作，需要新增產品行為時先確認。</td>
     </tr>
     <tr>
       <td width="240"><a href="skills/debug-with-evidence/"><code>debug-with-evidence</code></a></td>
@@ -119,7 +119,7 @@ npx skills@latest add Rayyyyyyyyyyyyyyyyyyyy/ai-coding-architecture-skill --skil
     </tr>
     <tr>
       <td width="240"><a href="skills/rescue-vibe-project/"><code>rescue-vibe-project</code></a></td>
-      <td>專案還能跑，但每改一次就壞別的地方，甚至已經沒人敢再碰時，用它先救回一條可以驗證的核心流程。它不會一上來就全面重寫，也不會因為救活一頁就宣布整個專案都健康了。</td>
+      <td>專案還能跑，但每改一次就壞別的地方，甚至已經沒人敢再碰時，用它先列出問題 checklist，與你確認要修的項目和驗證方式後，再救回一條可以驗證的核心流程。它不會一上來就全面重寫，也不會因為救活一頁就宣布整個專案都健康了。</td>
     </tr>
   </tbody>
 </table>
@@ -127,7 +127,7 @@ npx skills@latest add Rayyyyyyyyyyyyyyyyyyyy/ai-coding-architecture-skill --skil
 `rescue-vibe-project` 不會由 AI 自己決定啟用。你真的需要時，請直接說：
 
 ```text
-請使用 $rescue-vibe-project，先把這個專案恢復到能安全繼續修改的狀態。
+請使用 $rescue-vibe-project，先列出找到的問題 checklist，與我確認修復範圍後，再實作修復，讓專案恢復到能安全繼續修改的狀態。
 ```
 
 <details>
@@ -158,11 +158,22 @@ npx skills@latest add Rayyyyyyyyyyyyyyyyyyyy/ai-coding-architecture-skill --skil
 
 不同 AI 工具對自動載入 skills、限制使用者專用流程，以及 Agent 交接格式的支援程度不太一樣，實際行為仍以你使用的工具為準。
 
+### 先說明，還是開始修改？
+
+| 你提出的需求 | AI 應該做到哪裡 |
+| :--- | :--- |
+| 「帶我看懂架構和資料流」 | 用 `explain-project` 解說目前怎麼運作，指出未完成與未驗證處，保持唯讀。 |
+| 「看看哪裡能重構／這個流程缺什麼」 | 先提供有證據的建議或狀態清單，等你要求實作。 |
+| 「把剛才選的項目做好」 | 在已同意的範圍內實作與驗證，一般選擇不必反覆確認。 |
+| 「救回這個專案」 | 用 `rescue-vibe-project` 先列問題 checklist，等你確認修復範圍後才動手；擴大範圍時再確認。 |
+
 ### 想點名也可以
 
 如果這次特別在意某個面向，可以直接講：
 
 ```text
+請使用 $explain-project，說明新增一筆資料後會經過哪些地方、最後存在哪裡。
+
 請使用 $coding-architecture，照專案原本的做法完成這個頁面。
 
 請使用 $architecture-context，確認這次修改沒有弄壞原本的架構決定。
@@ -192,6 +203,21 @@ npx skills@latest add Rayyyyyyyyyyyyyyyyyyyy/ai-coding-architecture-skill --skil
 | Codex | 另外透過 `agents/openai.yaml` 補上介面資訊和呼叫規則 |
 
 兩邊讀到的是同一套行為。不過哪些 skills 會自動出現、哪些只能由使用者呼叫，以及 Agent 之間能不能直接交換結構化資料，仍由各自的工具決定。
+
+## 維護這個 repo
+
+本 repo 採用 Matt 工作流的分工：先確認範圍、依 Markdown 規格實作，再用行為評估與 Standards／Spec 雙軸 review 檢查結果。工作追蹤放在本地 Markdown，設定由 [AGENTS.md](AGENTS.md) 與 [CLAUDE.md](CLAUDE.md) 共同指向 [docs/agents/](docs/agents/)。
+
+| 想查看什麼 | 位置 |
+| :--- | :--- |
+| 工作追蹤與狀態慣例 | [Issue tracker](docs/agents/issue-tracker.md)、[triage 狀態](docs/agents/triage-labels.md) |
+| 功能規格與進度 | `.scratch/<feature>/`；例如 `explain-project` 的[規格](.scratch/explain-project/spec.md)與[進度](.scratch/explain-project/progress.md) |
+| 行為評估方式 | [evaluations/README.md](evaluations/README.md) |
+| `explain-project` 已執行的評估 | [情境、結果與限制](evaluations/explain-project/runs/2026-09-07/README.md) |
+
+評估案例與實際執行紀錄分開保存。`explain-project` 的兩個隔離情境與一個對照組已通過；對照組同樣能完成解說，因此目前不能宣稱新 skill 帶來多少改善，也尚未驗證真人理解成效。
+
+這些是維護本集合的設定；安裝及使用各個 skill 不需要另外安裝 Matt 的技能套件。
 
 ## License
 

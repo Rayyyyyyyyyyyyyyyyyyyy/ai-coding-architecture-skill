@@ -39,7 +39,7 @@ When they disagree:
 
 1. Identify the exact conflicting responsibility, ownership rule, dependency, public boundary, or invariant.
 2. Use the current task, repository instructions, tests, callers, and version history to determine whether the implementation or documentation is stale.
-3. If the intent can be determined safely, update the stale side in the same change.
+3. If the intent can be determined safely, update the stale side only within an authorized implementation or documentation change. For inquiry or review, report the conflict, evidence, and proposed correction without editing either side. Permission to update documentation does not itself authorize changing executable behavior.
 4. If resolution requires a product decision, destructive migration, or material scope expansion, preserve the current boundary where possible and ask the user instead of guessing.
 
 Do not replace explicit repository evidence with a preferred pattern merely because another architecture seems more familiar.

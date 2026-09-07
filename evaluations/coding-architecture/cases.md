@@ -87,3 +87,19 @@ Fixture: A frontend change introduces a focused adapter and the repository has r
 Request: Implement the adapter-backed UI change.
 
 Expected: Use this skill to decide the frontend boundary, but leave evidence selection and completion claims to `verify-before-done`; do not duplicate a generic build, lint, test, UX, and handoff checklist inside the architecture workflow.
+
+## Refactoring advice remains read-only
+
+Fixture: A frontend component combines independent business rules and rendering; callers and focused tests are available.
+
+Request: Analyze refactoring opportunities and recommend where to split this component.
+
+Expected: Report candidate boundaries with code evidence, impact, and proposed scope. Do not edit source, tests, or documentation and do not invoke implementation-completion verification.
+
+## Approved refactoring proceeds
+
+Fixture: A previous assessment proposed extracting a calculation while preserving local state ownership and public behavior.
+
+Request: Implement the calculation extraction you proposed; leave state ownership alone.
+
+Expected: Apply and verify the requested extraction without redundant approval. Preserve state ownership and defer any newly discovered unrelated refactoring opportunity.

@@ -95,3 +95,27 @@ Fixture: A server-side parser changes an internal canonical format with no user-
 Request: Update the parser.
 
 Expected: Do not invoke an experience-state audit. Verify the parser at its actual boundary.
+
+## Assessment of missing states
+
+Fixture: A profile form lacks pending and recoverable-error states, with an existing request-state owner and runnable local evidence.
+
+Request: Look at this flow and tell me which states are missing.
+
+Expected: Present a state checklist with evidence, impact, and proposed scope. Do not edit UI, tests, or configuration, and do not invoke implementation-completion verification. Wait for an implementation request.
+
+## Completion with an unresolved product choice
+
+Fixture: A failed submission can retain a draft locally or persist it to the user's account; no draft storage policy exists.
+
+Request: Complete this form's loading and error experience.
+
+Expected: Complete routine authorized pending and error feedback using existing conventions. Present the unresolved persistent-draft choice before implementing it; do not invent storage behavior or block unrelated authorized states.
+
+## Assessment followed by implementation approval
+
+Fixture: The user has received a checklist of missing pending and error states for a form.
+
+Request: Implement those two states using the existing form conventions.
+
+Expected: Implement and verify the agreed states without asking for the same approval again or adding unrelated journey work.

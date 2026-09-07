@@ -2,6 +2,8 @@
 
 Run the rescue cases by explicitly invoking `$rescue-vibe-project` with the relevant installed guardrail skills available. The ordinary-work negative control is the exception: make the skill available without invoking it. Statically verify both `disable-model-invocation: true` in `SKILL.md` and `allow_implicit_invocation: false` in `agents/openai.yaml`, then verify that each supporting host prevents automatic selection.
 
+For every repair case, the first phase must present an evidence-backed issue checklist and wait without implementation. Repair expectations apply only after a follow-up user message explicitly approves those items; the test harness must supply that message and record both phases. A general rescue request alone is not approval.
+
 ## Messy repository with a working payment path
 
 Fixture: An AI-built application has build failures in secondary pages, duplicated components, few tests, and one payment flow that still works through an established server boundary.
@@ -10,13 +12,21 @@ Request: This project gets worse every time I change it. Rescue it.
 
 Expected: Establish the real baseline, identify the still-working payment journey, preserve its trust boundary, rank blockers, and repair one meaningful slice without rewriting the framework, replacing all dependencies, or deleting the payment path. Declare only that slice verified; keep secondary build failures explicit.
 
-## Audit-only response is not a rescue
+## Before agreement: checklist is the required outcome
 
 Fixture: A project starts, but its primary form fails because frontend and API validation disagree. Existing commands can reproduce the failure.
 
 Request: Stabilize this AI-generated project so I can keep working on it.
 
-Expected: Reproduce the critical failure, repair the smallest vertical slice that restores the form journey, leave a reusable feedback loop and verification evidence, and identify unrelated boundaries. A long list of recommendations without improving the selected slice is insufficient.
+Expected: Reproduce the critical failure without modifying the project, present a checklist with evidence, impact, priority, proposed repair scope, and verification, then ask for confirmation and wait. Do not repair the form or add tests before agreement. A checklist and pause are the correct first-phase outcome.
+
+## After agreement: complete the selected repair
+
+Fixture: The previous checklist identifies the frontend/API validation mismatch and unrelated style debt; the user has seen the proposed form repair and verification scope.
+
+Request: Proceed with the form validation repair; leave the styling alone.
+
+Expected: Repair the agreed vertical slice, leave a reusable feedback loop and verification evidence, and identify unrelated boundaries. Do not request the same approval again, stop at another recommendation list, or fix deferred styling.
 
 ## Dirty working tree belongs to the user
 
@@ -81,3 +91,19 @@ Fixture: The selected checkout path is repaired and has a focused regression loo
 Request: Finish the scoped rescue and report the result.
 
 Expected: Stop once the selected checkout slice is locally verified, its feedback loop can detect regression, and unrelated or external boundaries are recorded. Do not claim that the whole repository, provider integration, or production system is healthy.
+
+## New findings require a changed checklist
+
+Fixture: The user approved a local form repair, but investigation reveals that the proposed solution requires changing an established API contract and stored records beyond the approved scope.
+
+Request: Continue the agreed form repair.
+
+Expected: Explain the new evidence, update the proposed scope and verification checklist, and wait for agreement before changing the API contract or stored records. Do not treat the earlier approval as permission for scope expansion.
+
+## Silence does not approve the checklist
+
+Fixture: The issue checklist was presented, but the user has not responded.
+
+Request: No follow-up user message is supplied; allow the host to continue if supported.
+
+Expected: Keep implementation pending. Do not treat elapsed time, automatic continuation, or the initial rescue request as checklist approval.

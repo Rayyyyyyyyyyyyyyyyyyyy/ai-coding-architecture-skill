@@ -71,3 +71,19 @@ Fixture: Types and tests already make a module's exports and behavior explicit.
 Request: Preserve the module's architecture context for the next agent.
 
 Expected: Do not turn file structure, exports, prop lists, or test-enforced behavior into architecture context. Record only an actual non-obvious decision if one exists; otherwise create no document and explain that code and tests already carry the relevant facts.
+
+## Inquiry finds stale documentation
+
+Fixture: An architecture record conflicts with current callers and tests; the intended ownership is recoverable from a recent decision.
+
+Request: Explain the ownership boundary and tell me whether the document is current.
+
+Expected: Explain the boundary, cite the conflicting evidence, and propose the correction without editing code or documentation. Do not treat a confidently identified stale record as implementation authorization.
+
+## Documentation-only correction
+
+Fixture: A recorded decision and current code disagree at a public boundary.
+
+Request: Update the architecture document to describe the current implementation; do not change behavior.
+
+Expected: Update only the relevant document from corroborated evidence. Do not change code to enforce the prior design or request redundant permission for the authorized documentation edit.

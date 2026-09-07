@@ -6,12 +6,13 @@ disable-model-invocation: true
 
 # Rescue Vibe Project
 
-Restore one verified, changeable vertical slice; do not certify the whole repository.
+First present the findings and agree on a repair checklist with the user. Then restore one verified, changeable vertical slice; do not certify the whole repository.
 
 Load each named skill through the host mechanism; call the Skill tool when exposed. Do not reload an active skill.
 
 ## Baseline
 
+- Investigate and gather evidence before implementation. Do not edit project files, apply fixes, or change dependencies, configuration, or persistent data before checklist agreement.
 - Preserve and distinguish existing uncommitted work.
 - Recover runtime, package manager, commands, architecture context, persistence/external boundaries, and the critical user journey.
 - Record exact known-good behavior and failures across install, build, start, and the selected path.
@@ -30,9 +31,17 @@ Prioritize:
 
 Defer cosmetic debt, speculative abstraction, dependency churn, and unrelated modernization.
 
+## Agree on the checklist before implementation
+
+Present the issues found as a numbered checklist before making repairs. For each item, include the evidence/location, user impact and priority, proposed repair scope, and how success will be verified. Distinguish confirmed failures from unverified suspicions, and mark which items you recommend fixing now versus deferring.
+
+Propose the smallest vertical slice that restores a user outcome or reliable development baseline. Ask the user to confirm or adjust the checklist and wait for an explicit response. Invoking this skill, a general request to rescue the project, or silence does not approve the proposed items. If no actionable issue is found, report that result instead of inventing a repair.
+
+Record the agreed items and deferred items in the conversation, then implement only the agreed scope. A clear approval of the presented checklist is sufficient; do not ask again for each agreed item. If new findings require expanding or materially changing that scope, update the checklist and obtain agreement on the change before implementing it.
+
 ## Repair one slice
 
-Choose the smallest vertical slice that restores a user outcome or reliable development baseline. Invoke only installed skills whose signal occurs:
+Repair the vertical slice agreed in the checklist. Invoke only installed skills whose signal occurs; invoking a supporting skill does not bypass checklist agreement:
 
 | Signal | Invoke through the host mechanism |
 | --- | --- |

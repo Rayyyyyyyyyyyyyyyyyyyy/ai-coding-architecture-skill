@@ -11,6 +11,8 @@ Load each named skill through the host mechanism; call the Skill tool when expos
 
 ## Recover
 
+- Distinguish read-only inquiry/review from authorized implementation or documentation work. For inquiry or review, report the relevant intent, evidence, and conflicts without editing code or documents. Apply synchronization and record-creation rules only within an authorized change; clear evidence of staleness alone does not authorize a repair.
+
 - Follow user and repository instructions.
 - Use the established architecture-documentation convention; create `ARCHITECTURE.md` only when none exists.
 - Read only the hierarchy governing the active boundary, then corroborate it with code, types, schemas, tests, and callers.

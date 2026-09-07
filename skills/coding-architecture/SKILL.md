@@ -1,6 +1,6 @@
 ---
 name: coding-architecture
-description: Structure non-trivial frontend changes through semantic reuse, composition, clear ownership, and justified abstraction. Not for backend-only work or cosmetic edits.
+description: Assess or structure non-trivial frontend changes through semantic reuse, composition, clear ownership, and justified abstraction. Keep advice-only requests read-only. Not for backend-only work or cosmetic edits.
 ---
 
 # Coding Architecture
@@ -11,6 +11,8 @@ Load each named skill through the host mechanism; call the Skill tool when expos
 
 ## Scope
 
+- **Advice or assessment:** when asked to analyze architecture or find refactoring opportunities, report candidate issues with evidence, impact, and recommended scope; do not edit files or invoke implementation-completion verification.
+- **Implementation:** when development or refactoring is requested, apply the decision order within the authorized scope. Do not require a second approval for routine in-scope choices; obtain agreement before expanding the scope or resolving a missing product decision.
 - Follow user and repository instructions.
 - Preserve the framework, design system, directory conventions, state model, and test strategy unless the task requires change.
 - Own frontend language selection, component/state boundaries, semantic reuse, frontend data normalization, and abstraction decisions.
@@ -43,4 +45,4 @@ Line count, prop count, and hypothetical reuse are investigation signals, not ex
 - Prefer existing framework/design-system/platform capability. On a real dependency-risk signal, invoke `safe-change`.
 - Prefer domain names over `utils`, `helpers`, `common`, or universal configurable components.
 
-Report only a material boundary, abstraction, or intentional convention deviation. On completion invoke `verify-before-done`; on actual agent transfer invoke `a2a-handoff`.
+Report only a material boundary, abstraction, or intentional convention deviation. On implementation completion invoke `verify-before-done`; on actual agent transfer invoke `a2a-handoff`.

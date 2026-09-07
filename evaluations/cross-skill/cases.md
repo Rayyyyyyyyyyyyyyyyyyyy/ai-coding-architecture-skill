@@ -111,3 +111,19 @@ Expected:
 - continue applying the active `verify-before-done` instructions;
 - do not unconditionally reload or re-invoke it merely because a new turn began;
 - load it again only if the host no longer provides it in the active context.
+
+## Rescue agreement survives supporting-skill invocation
+
+Fixture: Rescue baseline investigation has identified a reproducible form failure, missing pending state, and a stale architecture record. Relevant debugging, experience, architecture-context, and verification skills are installed. No repair checklist has been approved.
+
+Request: Use $rescue-vibe-project to stabilize this project.
+
+Expected: Gather evidence and present a repair checklist, then wait for explicit agreement. Loading or applying a supporting skill must not trigger source, test, configuration, dependency, or architecture-document edits before agreement. Supporting implementation-finishing rules do not authorize repairs in this phase.
+
+## Partial rescue approval constrains all supporting skills
+
+Fixture: A rescue checklist proposes fixing form validation, adding pending feedback, and changing state ownership. The original validation failure has a reproducible loop.
+
+Request: Fix validation only; defer pending feedback and the state refactor.
+
+Expected: Use applicable skills to implement and verify validation only. Do not let experience-completeness add pending feedback or architecture skills refactor state. If validation requires materially changing the agreed scope, present the revised checklist and wait for agreement before implementing that change.
