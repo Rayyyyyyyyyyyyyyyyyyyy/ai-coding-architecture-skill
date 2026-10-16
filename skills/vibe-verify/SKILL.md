@@ -5,23 +5,25 @@ description: Collect proportionate evidence for an executable change and limit c
 
 # Vibe Verify
 
-Separate implementation, verification, provisioning, and production claims.
-
-Load each named skill through the host mechanism; call the Skill tool when exposed. Do not reload an active skill.
+Load named skills through the host mechanism; call the Skill tool when exposed.
+Do not reload an active skill.
 
 ## Authority
 
-- **Verification only:** run or inspect evidence; do not mutate code, tests, config, fixtures, or external systems to make it pass.
-- **Implementation finishing:** fix an authorized in-scope cause exposed by verification, then rerun the affected check.
-
-If the request asks only whether existing work is correct, use verification-only mode.
+- **Verification only:** run/inspect evidence without changing code, tests,
+  configuration, fixtures, or external systems to make checks pass. Use this mode
+  when asked only whether existing work is correct.
+- **Implementation finishing:** repair an authorized in-scope cause exposed by
+  verification, then rerun the affected check.
 
 ## Assertions
 
-- Recover requirements from the request, repository, tests, types, and owning boundary.
-- Define the smallest observable assertions that prove the change. Add a negative assertion only when required by accepted behavior or policy.
-- Do not invent UX, authz, idempotency, data, or deployment policy. Surface missing policy as an unverified boundary.
-- Keep evidence proportional to risk and coupling.
+Recover the smallest observable assertions from the request and established
+in-scope contracts, using repository evidence, tests, types, and the owning
+boundary. Newly added tests cannot independently authorize new behavior. Include
+negative assertions when accepted behavior or policy requires them; do not invent
+UX, authorization, idempotency, data, or deployment policy. Report missing policy
+as an unverified boundary. Match evidence to risk and coupling.
 
 ## Evidence
 
@@ -33,15 +35,25 @@ If the request asks only whether existing work is correct, use verification-only
 | trusted boundary | allow/deny/deduplicate/persist/reject policy |
 | external/deployed | real provider, credentials, migration, infrastructure, production |
 
-Use the cheapest evidence that directly proves each assertion; combine types only when required. Run focused checks before broader checks. Exercise representative API/CLI inputs and selected UI states when static evidence is insufficient.
+Use the cheapest evidence that directly proves each assertion; combine types
+only as needed and run focused checks first. Exercise representative API/CLI
+inputs and selected UI states when static evidence is insufficient. For bug
+fixes, rerun the original red-capable loop; without one, state the confidence
+limit and invoke `vibe-debug` when causal investigation is authorized. Inspect
+the final diff for scope drift, generated artifacts, debug code, and bypasses.
 
-For a bug fix, rerun the red-capable loop. If none exists, state the confidence limit; when causal investigation is authorized, invoke `vibe-debug`. Inspect the final diff for scope drift, generated artifacts, debug code, and bypasses.
+## Failure and cost
 
-On failure:
+Apply the authority mode above. Stop at missing product decisions, unavailable
+external state, new authorization, or scope expansion.
 
-- verification-only: report without mutation;
-- implementation-finishing: fix only an authorized in-scope cause;
-- stop for product decisions, unavailable external state, new authorization, or scope expansion.
+When verification requires new test infrastructure or unrelated environment
+repairs, or harness adjustments repeat without new behavior evidence, reassess
+the next step against the original assertions. Prefer cheaper direct evidence;
+continue proportionate, authorized harness repairs that unlock necessary checks.
+Prior effort does not justify more work. If no adequate in-scope method remains,
+report the limit and seek agreement for concrete scope expansion. Never weaken
+necessary acceptance or mark unverified behavior as passed to contain cost.
 
 ## Claim
 
@@ -50,4 +62,6 @@ On failure:
 - **Externally provisioned:** required external configuration exists.
 - **Production verified:** deployed behavior was exercised in production.
 
-Never promote evidence across these states. Record checks as passed, failed, not run, unavailable, or blocked; do not claim an unobserved result. Report decisive evidence and material unverified boundaries. On actual agent transfer invoke `vibe-handoff`.
+Keep claims within the observed state. Mark checks passed, failed, not run,
+unavailable, or blocked; report decisive evidence and material unverified
+boundaries. On actual agent transfer invoke `vibe-handoff`.

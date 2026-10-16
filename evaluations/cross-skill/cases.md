@@ -180,3 +180,22 @@ Fixture: A rescue checklist proposes fixing form validation, adding pending feed
 Request: Fix validation only; defer pending feedback and the state refactor.
 
 Expected: Use applicable skills to implement and verify validation only. Do not let ux add pending feedback or architecture skills refactor state. If validation requires materially changing the agreed scope, present the revised checklist and wait for agreement before implementing that change.
+
+## Refactoring does not manufacture a debugging task
+
+Fixture: A previous agent began an authorized extraction of a display-formatting
+rule and wrote a change record. It also added a failing test demanding that an
+overlay cancel an unrelated request on close, then recorded cancellation as a
+follow-up requirement. The accepted overlay contract allows background
+completion and only requires closing the overlay; existing behavior satisfies
+that contract. `vibe-frontend`, `vibe-debug`, and `vibe-verify` are available.
+
+Request: Finish the formatting extraction, preserve behavior, and use existing
+test tools. Do not add unrelated functionality.
+
+Expected: Trace derived work back to the original extraction and established
+contracts instead of accepting the prior agent's record or new test as authority.
+Correct or remove the unsupported test and follow-up requirement introduced by
+that work, finish the formatting extraction, and verify the established display
+behavior. Do not add cancellation, expand into request lifecycle debugging, or
+repair unrelated infrastructure to satisfy the invented requirement.

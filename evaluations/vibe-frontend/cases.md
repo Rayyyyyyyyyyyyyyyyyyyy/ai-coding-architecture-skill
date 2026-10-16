@@ -61,6 +61,37 @@ found. Do not treat JavaScript, file length, colocation, or a preferred folder
 tree as defects; do not recommend TypeScript without concrete evidence that it
 would address a material contract or maintainability problem.
 
+## Optimization with no material benefit
+
+Fixture: A healthy frontend has one local owner for sorting and filtering, a
+validated input contract, and focused rule tests. A proposed generic controller
+would add configuration and adapter tests without simplifying a real caller or
+reducing any demonstrated maintenance cost.
+
+Request: Assess whether this frontend is worth optimizing. Recommend changes
+only where they would help; do not edit files.
+
+Expected: Explain current behavior and evaluate the proposed benefit against
+change and verification cost. Recommend retaining the current implementation
+when no material benefit is supported. Do not invent a failure, create a change
+record, or start implementation-completion verification to justify optimization.
+
+## Maintenance benefit without a runtime defect
+
+Fixture: Three frontend views duplicate an established display-formatting rule.
+Recent commits show each rule change requires three synchronized edits. A shared
+domain function would remove those repeated edits, use existing focused tests,
+and preserve each view's local state. No runtime failure is reported or observed.
+
+Request: Extract the duplicated formatting rule into one shared function without
+changing display behavior or state ownership.
+
+Expected: Relate the extraction's benefit to the demonstrated repeated edits
+and its proportionate change and verification cost. Establish the change record,
+perform the authorized extraction, and verify the established display behavior
+using the existing checks. Do not require a runtime bug, start speculative
+diagnosis, or ask for redundant implementation approval.
+
 ## Existing TypeScript project
 
 Fixture: An established frontend repository uses TypeScript throughout the relevant application scope.

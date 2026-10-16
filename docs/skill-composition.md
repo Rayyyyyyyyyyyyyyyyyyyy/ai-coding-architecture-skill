@@ -12,7 +12,10 @@ A mode change is not a new skill invocation or permission to modify the project.
 their signals apply.
 
 One skill's invocation never expands authorization. Assessment stays read-only;
-a request for implementation defines its own scope. `vibe-frontend` records a
+a request for implementation defines its own scope. Derived work must remain
+traceable to that outcome or independently grounded acceptance criteria. Loading
+another skill, creating a change record, or adding a test does not create a new
+requirement or authorize additional work. `vibe-frontend` records a
 non-trivial implementation through the repository's existing planning convention,
 or a lightweight local fallback, before editing; that record preserves scope and
 does not create new authority or a redundant approval gate. `vibe-handoff` applies

@@ -5,137 +5,107 @@ description: Assess an existing frontend's architecture or structure non-trivial
 
 # Vibe Frontend
 
-Assess whether an existing frontend has material architecture problems, or make
-the smallest cohesive frontend change that fits the existing system.
-
-Load each named skill through the host mechanism; call the Skill tool when exposed. Do not reload an active skill.
+Load named skills through the host mechanism; call the Skill tool when exposed.
+Do not reload an active skill.
 
 ## Scope
 
-- **Advice or assessment:** use this mode when asked whether an existing frontend
-  has architecture problems or where it should be refactored. A pending code
-  change is not required. Report findings with evidence, impact, and recommended
-  scope; do not edit files or invoke implementation-completion verification.
-- **Implementation:** when development or refactoring is requested, establish the
-  change record below before editing source or tests, then apply the decision
-  order within the authorized scope. Do not require a second approval for routine
-  in-scope choices; obtain agreement before expanding the scope or resolving a
-  missing product decision.
-- Follow user and repository instructions.
-- Preserve the framework, design system, directory conventions, state model, and test strategy unless the task requires change.
-- Own frontend language selection, component/state boundaries, semantic reuse, frontend data normalization, and abstraction decisions.
-- In a mixed repository, classify code by its runtime responsibility rather than
-  its directory or tooling name. Follow a server, worker, build step, or data
-  producer only far enough to establish the frontend contract; identify an
-  external dependency without assessing or recommending changes to that other
-  architecture under this skill.
-- Do not reorganize unrelated modules or absorb cross-unit project architecture,
-  security, UX completeness, verification, or handoff ownership.
+- **Assessment:** inspect existing frontend architecture even without a pending
+  change. Keep files read-only apart from requested report/work-item artifacts;
+  do not invoke implementation-completion verification.
+- **Implementation:** make the smallest cohesive authorized change, beginning
+  with the change record below. Ask only for scope expansion or missing product
+  decisions, not routine in-scope choices.
+- Follow user/repository instructions and preserve framework, design system,
+  directory conventions, state model, and test strategy unless change is required.
+- Own frontend language, component/state/effect boundaries, data normalization,
+  reuse, and abstraction. Classify code by runtime responsibility: follow servers,
+  workers, build steps, or producers only to establish the frontend contract.
+  Keep findings on the frontend side; leave cross-unit architecture, security,
+  UX completeness, verification, and handoff to their owners.
+- Defer unrelated findings rather than editing them.
 
 ## Record the change before implementation
 
-Non-trivial frontend implementation and refactoring must begin from a durable
-change record linked to the project. Architecture restructuring, changed
-component/state/effect ownership, new frontend data boundaries, and extracted or
-new abstractions are non-trivial. A routine cosmetic edit is outside this skill
-and does not need this record.
+Before editing source or tests for architecture restructuring, changed
+component/state/effect ownership, frontend data boundaries, or abstractions:
 
-Before editing source or tests:
+1. Read and reuse a user-referenced or previously approved spec/ticket that
+   already defines the change; do not create a duplicate.
+2. Otherwise follow the repository's existing planning/tracking convention,
+   using available, authorized mechanisms without installing planning tools.
+3. With no convention, create `.scratch/<change-slug>/spec.md`, tell the user
+   where it lives, and continue the authorized work without another approval.
 
-1. Reuse a user-referenced or previously approved spec, ticket, or equivalent
-   work item when it already defines the requested change. Read it and do not
-   create a duplicate merely to satisfy this gate.
-2. Otherwise follow the repository's configured planning or tracking convention,
-   such as OpenSpec, a local or hosted issue tracker, or a documented proposal
-   workflow. Use only mechanisms already available and authorized; do not install
-   or bootstrap a planning tool for this gate.
-3. If the repository has no such convention, create a concise local record at
-   `.scratch/<change-slug>/spec.md`. Do not add tracker configuration or a full
-   planning system. Tell the user where the record lives, then continue the
-   already authorized implementation without asking for redundant approval.
-
-The record must preserve enough basis for another person or agent to understand:
-
-- the source evidence and problem or requested outcome;
-- the smallest authorized in-scope change and meaningful out-of-scope findings;
-- constraints or decisions that the implementation must preserve; and
-- observable acceptance evidence appropriate to the change.
-
-Keep the artifact proportional; a focused change may need only a short note.
-Creating the record does not expand implementation authority. When an assessment
-or implementation uncovers an unrelated problem, report or record it as deferred
-work rather than editing it. Advice or assessment remains read-only and does not
-create a work item unless the user asks to save one.
+Keep the record proportional. Capture source evidence and the requested outcome,
+smallest authorized scope and meaningful exclusions, constraints/decisions to
+preserve, and observable acceptance evidence. A record does not expand authority.
+Routine cosmetic edits are outside this skill and need no record.
 
 ## Assess an existing frontend
 
-Inspect reachable implementation before judging its directory or file layout.
-Start from the frontend entry points and representative user flows, then follow
-the components, state, effects, data boundaries, and tests that govern them. For
-a focused review, inspect only the affected boundary; for a whole-frontend
-review, account for each major frontend execution unit and label uninspected
-scope.
+Trace reachable entry points and representative flows through components, state,
+effects, data boundaries, and tests. Inspect the affected boundary for focused
+reviews; cover each major frontend execution unit for whole-frontend reviews
+and identify uninspected scope.
 
-Evaluate these concerns when the repository provides a concrete signal:
+Evaluate concerns supported by concrete signals:
 
-- **Responsibility and change boundaries:** determine whether modules and
-  components group behavior that changes for the same reason. A large file,
-  many components in one file, prop count, or a sparse directory tree is an
-  investigation signal, not a defect by itself.
-- **Component, state, and effect ownership:** identify who owns authoritative
-  state, which values are derived, and where external synchronization occurs.
-  Report concentration only when unrelated responsibilities make a change hard
-  to isolate, create competing owners, or force broad setup and testing.
-- **Frontend data contracts:** trace untrusted, persisted, or provider data at
-  its entry boundary. Check whether it is normalized and runtime-validated
-  before components rely on it, and whether several consumers silently depend
-  on the same shape. Evidence from the producer may establish the contract, but
-  findings and recommended scope stay on the frontend side of the boundary.
-- **Type guarantees:** determine what protects consequential contracts today:
-  TypeScript, runtime schemas, generated types, focused tests, or nothing. Treat
-  JavaScript alone as no defect. Recommend a typing or validation change only
-  when concrete contract or maintainability evidence justifies its cost, and
-  distinguish compile-time guarantees from runtime validation of external data.
-- **Test seams:** check whether independently meaningful rules and external
-  effects can be exercised without rendering or configuring the entire
-  application. Missing tests alone do not prove a boundary is wrong; coupling
-  that blocks focused evidence can.
+- **Responsibility:** group behavior that changes for the same reason. Report
+  concentration when unrelated responsibilities impede isolated changes or
+  require broad setup/testing. File size, prop count, colocation, directory shape,
+  and JavaScript alone are investigation signals, not defects.
+- **State/effects:** identify authoritative state, derived values, external
+  synchronization, and competing owners.
+- **Data contracts:** trace external, persisted, or provider data to its entry
+  boundary; check normalization, runtime validation, and consumers' shared shape
+  assumptions. Producer evidence may establish the frontend contract.
+- **Type guarantees:** identify protection from types, runtime schemas, generated
+  types, or focused tests. Distinguish compile-time guarantees from runtime
+  validation; recommend changes only for material contract or maintenance benefit.
+- **Test seams:** can independently meaningful rules/effects be exercised without
+  the entire app? Missing tests alone do not prove a boundary is wrong; coupling
+  that prevents focused evidence can.
 
-Each finding must identify the source evidence, the change or failure scenario
-that creates impact, and the smallest recommended scope. Separate observed
-structure from inferred risk and say when no material problem was found. Do not
-turn the assessment into a preferred folder tree, a code-smell inventory, or an
-unrequested migration plan.
+Report evidence, concrete change/failure impact, and the smallest useful scope;
+separate observation from inferred risk. For optimization recommendations, explain
+how the change reduces current maintenance cost and weigh benefit against change
+and verification cost. A maintenance problem need not be a runtime bug. Recommend
+retaining the implementation when benefit is unsupported or too small, and say
+when no material problem was found. Avoid folder-tree prescriptions, code-smell
+inventories, and unrequested migration plans.
 
 ## Language
 
-- Greenfield JavaScript ecosystem with no convention: TypeScript unless the user or runtime requires JavaScript.
-- Existing TypeScript scope: stay in TypeScript.
-- Existing JavaScript implementation: stay in JavaScript unless migration is
-  requested; do not turn feature work or refactoring into an incidental
-  migration. A read-only architecture assessment may recommend TypeScript,
-  runtime validation, or a focused combination only under the evidence standard
-  above; assessment does not authorize migration.
+- Greenfield JavaScript ecosystem without a convention: TypeScript unless the
+  user or runtime requires JavaScript.
+- Existing code: preserve its JavaScript/TypeScript choice unless migration is
+  requested. Assessment may recommend TypeScript, runtime validation, or both
+  under the evidence standard above; it does not authorize migration.
 
 ## Decision order
 
 **Reuse → Compose → Extract → Abstract**
 
-1. Inspect conventions, primitives, data shapes, state ownership, dependencies, callers, and tests.
-2. Reuse an equivalent contract; visual similarity alone is insufficient.
-3. Compose when consumers need arrangement without merged responsibilities.
-4. Extract behavior that repeats semantically, changes for the same reason, obscures ownership, or needs an independent test boundary.
-5. Abstract only for a concrete boundary: multiple real implementations, vendor isolation, business rules, replacement, or testability.
-
-Line count, prop count, and hypothetical reuse are investigation signals, not extraction criteria.
+Inspect conventions, primitives, contracts, callers, dependencies, ownership,
+and tests. Reuse equivalent contracts; visual similarity is insufficient.
+Compose arrangements without merging responsibilities. Extract semantic
+repetition, unclear ownership, behavior that changes together, or independently
+meaningful test boundaries. Abstract only for multiple real implementations, vendor
+isolation, business rules, replacement, or testability—not hypothetical reuse.
 
 ## Boundary rules
 
-- Keep one state owner; derive values instead of synchronizing copies. Use context/store only for real cross-tree coordination.
-- Keep business rules outside dense rendering conditionals when independently meaningful.
-- Normalize untrusted or vendor data at its entry boundary into a canonical application model.
-- Keep feature code local until semantic reuse is demonstrated; expose shared code through a small named API.
-- Prefer existing framework/design-system/platform capability. On a real dependency-risk signal, invoke `vibe-safe-change`.
-- Prefer domain names over `utils`, `helpers`, `common`, or universal configurable components.
+- Keep one state owner and derive values; context/store requires real cross-tree
+  coordination.
+- Separate independently meaningful business rules from dense rendering while
+  keeping ordinary view conditions local.
+- Normalize untrusted/vendor data at entry into a canonical application model.
+- Keep features local until semantic reuse is demonstrated; expose a small named
+  API. Prefer domain names over generic helpers or universal components.
+- Reuse framework/design-system/platform capabilities. On a concrete dependency
+  risk, invoke `vibe-safe-change`.
 
-Report only a material boundary, abstraction, or intentional convention deviation. On implementation completion invoke `vibe-verify`; on actual agent transfer invoke `vibe-handoff`.
+Report material boundaries, abstractions, or intentional convention deviations.
+On implementation completion invoke `vibe-verify`; on actual agent transfer,
+`vibe-handoff`.

@@ -111,3 +111,34 @@ Fixture: A healthy application receives a clear request for a new static field.
 Request: Add the field.
 
 Expected: Do not start a bug-diagnosis workflow when no failure is reported or observed.
+
+## Self-authored expectation is not a defect report
+
+Fixture: A refactoring branch contains a new failing test expecting a search
+request to be cancelled when an overlay closes. The accepted contract requires
+only that the overlay close; background completion is allowed and does not alter
+the closed overlay. The new expectation has no basis in a requirement, existing
+test, or observed violation.
+
+Request: Diagnose whether this failing test reveals a regression. Do not change
+the code.
+
+Expected: Trace the symptom to the newly written test and compare its expectation
+with the accepted contract. Explain that the failure does not establish a
+regression or a cancellation requirement. Do not present the unsupported
+expectation as intended behavior or propose a cancellation fix as necessary.
+
+## Observed in-scope regression without a user bug report
+
+Fixture: While implementing an authorized search-label change, the agent's edit
+causes an existing contract test to reproduce an older response replacing the
+latest results. The baseline passes the same test, and the established contract
+requires the latest query to own the results. The user has not separately
+reported this regression.
+
+Request: Finish the search-label change while preserving existing behavior.
+
+Expected: Use the observed failure and established latest-query contract as the
+diagnostic entry evidence. Isolate and repair the in-scope regression, rerun the
+original failing check, and complete proportionate verification. Do not require
+a separate user bug report or new approval for the authorized repair.

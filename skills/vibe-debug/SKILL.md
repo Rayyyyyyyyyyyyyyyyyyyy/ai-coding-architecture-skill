@@ -5,54 +5,60 @@ description: Diagnose failures or regressions with a red-capable feedback loop; 
 
 # Vibe Debug
 
-Establish evidence before changing behavior.
-
-Load each named skill through the host mechanism; call the Skill tool when exposed. Do not reload an active skill.
+Load named skills through the host mechanism; call the Skill tool when exposed.
+Do not reload an active skill.
 
 ## Authority
 
-- **Diagnosis only:** inspect existing evidence and report the supported cause; no source or runtime mutation without authorization.
-- **Diagnose and fix:** after isolating the cause, apply the smallest in-scope fix.
+- **Diagnosis only:** inspect evidence and report the supported cause; source or
+  runtime changes require authorization.
+- **Diagnose and fix:** isolate the cause, then apply the smallest in-scope fix.
 
-Ambiguous wording authorizes read-only diagnosis, not editing, deployment, provider mutation, production configuration, or instrumentation. Read [references/instrumentation.md](references/instrumentation.md) before adding instrumentation or observing production.
+Ambiguous wording permits read-only diagnosis. It does not authorize source or
+runtime edits, deployment, provider/production changes, or instrumentation.
+Read [references/instrumentation.md](references/instrumentation.md) before adding
+instrumentation or observing production.
 
 ## Red-capable loop
 
-- Separate observed symptom from proposed cause.
-- Capture expected/actual behavior, path, environment, and smallest trigger.
-- Reproduce with the smallest test, command, request, interaction, replay, trace, or authorized instrumentation.
-- The loop must exercise the reported path, fail for the symptom before the fix, and rerun after one change. For intermittent/performance failures, use controlled scheduling, bounded trials, or the same before/after measure.
-- Unrelated failures, one historical log, compilation success, or source inspection alone are not a red-capable loop.
-- If no reproduction or equivalent signal exists, report the missing evidence; do not patch a plausible hypothesis.
+- Identify the symptom's source: user report, existing test, or actual observation.
+  Separate symptom from proposed cause; capture expected/actual behavior, path,
+  environment, and smallest trigger.
+- Ground expectations in accepted requirements or established contracts. Imagined
+  edge cases are hypotheses; newly written tests need an independent expectation
+  basis and do not create requirements or fix authority.
+- Reproduce through the smallest relevant test, command, request, interaction,
+  replay, trace, or authorized instrumentation. The loop must exercise the reported
+  path, fail for the symptom, and rerun after one change. Use controlled timing,
+  bounded trials, or the same before/after measure for intermittent/performance
+  failures.
+- Unrelated failures, historical logs alone, compilation, and source inspection
+  do not establish the loop. Without reproduction or an equivalent signal, report
+  the missing evidence; do not patch a plausible hypothesis.
 
-## Isolate
+## Isolate and reframe
 
-- Reduce the failing path while preserving the symptom.
-- Test one evidence-backed hypothesis at a time; predict the discriminating observation.
-- Instrument only the owning boundary and remove temporary instrumentation per the reference.
-- After rejection, obtain new evidence before forming another fix.
+Reduce the path while preserving the symptom. Test one evidence-backed hypothesis
+at a time with a predicted discriminating observation. Instrument only the owning
+boundary and remove temporary instrumentation per the reference. Obtain new
+evidence after rejecting a hypothesis before proposing another fix.
 
-## Break stalled loops
+After three consecutive unsuccessful attempts with the same causal model, owning
+boundary, and evidence source, stop refining that approach. Parameter, timing,
+wording, or implementation variations do not reset the count. Restate the user's
+outcome and success evidence, separate facts from assumptions, and reconsider
+ownership and cause versus symptom. Choose a materially different hypothesis,
+evidence source, boundary, simplification, or safe workaround for what it can
+prove. New evidence or external state must change a retry's evidentiary value.
+With no different in-scope path, report the blocked outcome, failed approach,
+and smallest missing decision, evidence, or access.
 
-Treat attempts as the same approach when they only vary parameters, timing, wording, or implementation details while keeping the same causal model, owning boundary, and evidence source.
+## Fix and report
 
-After three consecutive unsuccessful attempts with the same approach, stop refining or repeating it. Before another attempt:
+Only in diagnose-and-fix mode, change the owning boundary, preserve contracts,
+and exclude cleanup, dependency churn, or architecture migration. Rerun the
+original loop and proportionate regression checks; retain bounded observability
+only with explicit authorization. After a fix, invoke `vibe-verify`.
 
-- restate the user's actual outcome and what observable evidence would count as success;
-- separate established facts from assumptions, especially assumptions preserved only by the current framing;
-- reconsider which boundary owns the problem and whether the task is solving a symptom instead of the cause;
-- identify materially different paths, such as a different hypothesis, evidence source, owning boundary, simplification, or safe workaround;
-- choose the next path for its ability to discriminate between causes, not because it is a fourth variation of the previous attempt.
-
-A retry is materially new only when new evidence or changed external state alters what it can prove. If no materially different in-scope path remains, report the blocked outcome, the failed approach, and the smallest decision, evidence, or access needed instead of continuing the loop.
-
-## Fix
-
-Only in diagnose-and-fix mode:
-
-- change the owning boundary, not an unrelated symptom layer;
-- preserve contracts; exclude cleanup, dependency churn, and architecture migration;
-- rerun the original loop and proportionate regression checks;
-- retain bounded observability only when explicitly authorized.
-
-After a fix, invoke `vibe-verify`. Report cause, decisive evidence, fix if authorized, and remaining uncertainty. On actual agent transfer invoke `vibe-handoff`.
+Report cause, decisive evidence, any authorized fix, and uncertainty. On actual
+agent transfer invoke `vibe-handoff`.
