@@ -1,3 +1,9 @@
+> **已封存，停止維護（2026-10-19）**
+>
+> 個人工作流已收斂到 Ponytail、Matt Pocock 與既有專項技能；安全修改、
+> 操作狀態及驗證證據的三項規則移入全域指引。本 repo 保留技能原始檔、
+> 歷史與評估紀錄供參考，不再擴充或建議新安裝。以下為封存前的文件。
+
 <div align="center">
 
 # Vibe Coding Engineering Guardrails
